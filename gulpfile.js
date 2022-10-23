@@ -52,5 +52,6 @@ function bundle() {
         .pipe(gulp.dest("dist"));
 }
 gulp.task("default", gulp.series(gulp.parallel("copy-html"), bundle));
+gulp.task("build", gulp.series(gulp.parallel("copy-html"), bundle));
 watchedBrowserify.on("update", bundle);
 watchedBrowserify.on("log", fancy_log);
