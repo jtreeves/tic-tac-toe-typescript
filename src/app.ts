@@ -1,5 +1,9 @@
+import createInitialScreen from './generators/createInitialScreen'
+import setInitialStates from './storers/setInitialStates'
+
 function app(): void {
-    console.log('hello')
+    createInitialScreen()
+    setInitialStates()
 }
 
 export default app
