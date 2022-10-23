@@ -10,7 +10,7 @@ function selectBestCell(
 
     let winningIndex: number = 0
     let blockingIndex: number = 0
-    let bestCell: HTMLElement = new HTMLElement()
+    let bestCell: HTMLElement
 
     if (opponent === 1) {
         winningIndex = xEmpty
