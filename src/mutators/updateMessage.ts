@@ -15,15 +15,11 @@ function updateMessage(): void {
 
     if (message !== null) {
         if (winner) {
-            message.textContent = turnIsPlayer ? 'You win!' : 'You lose!'
+            message.textContent = `You ${turnIsPlayer ? 'win' : 'lose'}!`
         } else if (tie) {
             message.textContent = 'Tie game!'
         } else {
-            if (turnIsPlayer) {
-                message.textContent = yourTurnMessage
-            } else {
-                message.textContent = waitTurnMessage
-            }
+            message.textContent = turnIsPlayer ? yourTurnMessage : waitTurnMessage
         }
     }
 }

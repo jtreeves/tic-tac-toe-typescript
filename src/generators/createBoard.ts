@@ -8,7 +8,7 @@ function createBoard(): HTMLElement {
     points.forEach((
         _: number, 
         index: number
-    ) => {
+    ): void => {
         const id: string = 'square-' + index
         const cell: HTMLElement = createCell(id)
 

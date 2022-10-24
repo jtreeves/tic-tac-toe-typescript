@@ -10,7 +10,7 @@ function findEmptyIndexInNearlyFullCombo(
 
     winningCombos.forEach((
         combo: number[]
-    ) => {
+    ): void => {
         const sum: number = points[combo[0]] + points[combo[1]] + points[combo[2]]
         const nearlyFull: boolean = sum === multiplier * 2
 

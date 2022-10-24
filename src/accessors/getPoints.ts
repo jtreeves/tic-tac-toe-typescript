@@ -5,7 +5,7 @@ function getPoints(): number[] {
     const arrayOfStrings: string[] = singleString.split(',')
     const arrayOfNumbers: number[] = arrayOfStrings.map((
         item: string
-    ) => {
+    ): number => {
         const numberValue: number = Number(item)
         
         return numberValue

@@ -4,7 +4,7 @@ function selectRandomEmptyCell(): HTMLElement {
     
     cells.forEach((
         cell: HTMLElement
-    ) => {
+    ): void => {
         if (cell.textContent === '') {
             emptyCells.push(cell)
         }
