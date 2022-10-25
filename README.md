@@ -39,11 +39,11 @@ This is a **TypeScript** web app built without using a framework. It uses **Parc
 
 **Landing Screen**
 
-![Landing Screen](public/images/landing-screen.png)
+![Landing Screen](public/images/main-screen.png)
 
 **Options Screen**
 
-![Options Screen](public/images/options-screen.png)
+![Options Screen](public/images/choice-screen.png)
 
 **Empty Board**
 
