@@ -4,13 +4,13 @@ import selectRandomEmptyCell from './selectRandomEmptyCell'
 
 function selectBestCell(
     opponent: number
-): HTMLElement {
+): HTMLElement | null {
     const xEmpty: number = findEmptyIndexInNearlyFullCombo(1)
     const oEmpty: number = findEmptyIndexInNearlyFullCombo(-1)
 
     let winningIndex: number = 0
     let blockingIndex: number = 0
-    let bestCell: HTMLElement
+    let bestCell: HTMLElement | null
 
     if (opponent === 1) {
         winningIndex = xEmpty

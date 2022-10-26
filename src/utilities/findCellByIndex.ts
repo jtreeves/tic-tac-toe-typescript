@@ -1,8 +1,8 @@
 function findCellByIndex(
     index: number
-): HTMLElement {
+): HTMLElement | null {
     const id: string = 'square-' + index
-    const cell: HTMLElement = document.getElementById(id) as HTMLElement
+    const cell: HTMLElement | null = document.getElementById(id)
 
     return cell
 }

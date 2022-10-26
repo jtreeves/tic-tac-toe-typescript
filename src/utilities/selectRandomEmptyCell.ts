@@ -1,4 +1,4 @@
-function selectRandomEmptyCell(): HTMLElement {
+function selectRandomEmptyCell(): HTMLElement | null {
     const cells: NodeListOf<HTMLElement> = document.querySelectorAll('article')
     const emptyCells: HTMLElement[] = []
     
@@ -11,10 +11,15 @@ function selectRandomEmptyCell(): HTMLElement {
     })
 
     const amount: number = emptyCells.length
-    const randomIndex: number = Math.floor(Math.random() * amount)
-    const randomCell: HTMLElement = emptyCells[randomIndex]
 
-    return randomCell
+    if (amount > 0) {
+        const randomIndex: number = Math.floor(Math.random() * amount)
+        const randomCell: HTMLElement = emptyCells[randomIndex]
+    
+        return randomCell
+    } else {
+        return null
+    }
 }
 
 export default selectRandomEmptyCell
