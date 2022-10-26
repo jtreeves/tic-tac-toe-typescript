@@ -17,14 +17,14 @@ describe('findCellByIndex utility', () => {
     it('should return element from screen with an id matching the index parameter', () => {
         const index: number = 0
         const id: string = 'square-' + index
-        const result: HTMLElement = findCellByIndex(index)
+        const result: HTMLElement | null = findCellByIndex(index)
         const expected: HTMLElement = document.getElementById(id) as HTMLElement
         expect(result).toBe(expected)
     })
 
     it('should return null if no element from screen has a matching id', () => {
         const index: number = 5
-        const result: HTMLElement = findCellByIndex(index)
+        const result: HTMLElement | null = findCellByIndex(index)
         expect(result).toBe(null)
     })
 })
