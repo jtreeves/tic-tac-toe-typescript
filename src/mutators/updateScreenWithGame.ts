@@ -10,17 +10,18 @@ function updateScreenWithGame(): void {
     const body: HTMLElement | null = document.querySelector('body')
     const p: HTMLElement | null = document.querySelector('p')
     const div: HTMLElement | null = document.querySelector('div')
-    const reminder: HTMLElement = createPlayerReminder()
-    const board: HTMLElement = createBoard()
-    const resetButton: HTMLElement = createResetButton()
-    const player: number = getPlayer()
-    const message: string = player === 1 ? yourTurnMessage : waitTurnMessage
     
     if (body && p && div) {
+        const reminder: HTMLElement = createPlayerReminder()
+        const board: HTMLElement = createBoard()
+        const resetButton: HTMLElement = createResetButton()
+        const player: number = getPlayer()
+        const message: string = player === 1 ? yourTurnMessage : waitTurnMessage
+        
         p.textContent = message
         p.remove()
         div.remove()
-        
+
         body.appendChild(reminder)
         body.appendChild(p)
         body.appendChild(board)

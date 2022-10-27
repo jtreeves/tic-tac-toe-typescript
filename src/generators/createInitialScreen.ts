@@ -4,11 +4,12 @@ import createStartButton from './createStartButton'
 
 function createInitialScreen(): void {
     const body: HTMLElement | null = document.querySelector('body')
-    const h1: HTMLElement = createTitle()
-    const p: HTMLElement = createMessage()
-    const button: HTMLElement = createStartButton()
-
+    
     if (body) {
+        const h1: HTMLElement = createTitle()
+        const p: HTMLElement = createMessage()
+        const button: HTMLElement = createStartButton()
+        
         body.appendChild(h1)
         body.appendChild(p)
         body.appendChild(button)

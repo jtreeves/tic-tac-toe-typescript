@@ -8,11 +8,11 @@ function handleTurn(
     event: Event
 ): void {
     const target: EventTarget | null = event.target
-    const player: number = getPlayer()
-    const turn: number = getTurn()
-
+    
     if (target && target instanceof HTMLElement) {
         const htmlTarget: HTMLElement = target as HTMLElement
+        const player: number = getPlayer()
+        const turn: number = getTurn()
 
         if (htmlTarget.textContent === '' && player === turn) {
             const id: string = htmlTarget.id

@@ -5,8 +5,8 @@ function handleReset(): void {
     const reminder: HTMLElement | null = document.querySelector('h2')
     const board: HTMLElement | null = document.querySelector('section')
     
-    if (reminder !== null) reminder.remove()
-    if (board !== null) board.remove()
+    if (reminder) reminder.remove()
+    if (board) board.remove()
     
     updateScreenWithOptions()
     setInitialStates()
