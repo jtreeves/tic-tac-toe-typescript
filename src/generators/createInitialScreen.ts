@@ -8,10 +8,12 @@ function createInitialScreen(): void {
     const p: HTMLElement = createMessage()
     const button: HTMLElement = createStartButton()
 
-    if (body !== null) {
+    if (body) {
         body.appendChild(h1)
         body.appendChild(p)
         body.appendChild(button)
+    } else {
+        throw new Error('No screen')
     }
 }
 

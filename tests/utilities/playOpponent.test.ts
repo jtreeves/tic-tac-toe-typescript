@@ -8,7 +8,8 @@ describe('playOpponent utility', () => {
         localStorage.setItem('winner', 'false')
         localStorage.setItem('tie', 'false')
         localStorage.setItem('player', '1')
-        document.body.innerHTML = mockCreateBoard(allEmpty)
+        const mockBoard: string = mockCreateBoard(allEmpty)
+        document.body.innerHTML = `<p>Some message</p>` + mockBoard
         playOpponent()
         const points: string | null = localStorage.getItem('points')
         expect(points).not.toBe(allEmpty)

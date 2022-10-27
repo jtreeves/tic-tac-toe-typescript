@@ -9,7 +9,7 @@ describe('findCellByIndex utility', () => {
         </section>`
     })
 
-    it('should return an HTMLElement', () => {
+    it('should return an HTMLElement under normal circumstances', () => {
         const result: any = findCellByIndex(0)
         expect(result instanceof HTMLElement).toBe(true)
     })
@@ -18,8 +18,9 @@ describe('findCellByIndex utility', () => {
         const index: number = 0
         const id: string = 'square-' + index
         const result: HTMLElement | null = findCellByIndex(index)
-        const expected: HTMLElement = document.getElementById(id) as HTMLElement
+        const expected: HTMLElement | null = document.getElementById(id)
         expect(result).toBe(expected)
+        expect(result).not.toBe(null)
     })
 
     it('should return null if no element from screen has a matching id', () => {

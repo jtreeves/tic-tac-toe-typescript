@@ -13,7 +13,7 @@ function updateMessage(): void {
     const tie: boolean = getTie()
     const turnIsPlayer: boolean = turn === player
 
-    if (message !== null) {
+    if (message) {
         if (winner) {
             message.textContent = `You ${turnIsPlayer ? 'win' : 'lose'}!`
         } else if (tie) {
@@ -21,6 +21,8 @@ function updateMessage(): void {
         } else {
             message.textContent = turnIsPlayer ? yourTurnMessage : waitTurnMessage
         }
+    } else {
+        throw new Error('No message currently on screen')
     }
 }
 

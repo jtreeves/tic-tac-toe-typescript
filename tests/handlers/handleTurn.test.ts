@@ -2,7 +2,7 @@ import handleTurn from '../../src/handlers/handleTurn'
 
 describe('handleTurn handler', () => {
     beforeEach(() => {
-        document.body.innerHTML = `<article id='square-5'></article>`
+        document.body.innerHTML = `<p>Some message</p><article id='square-5'></article>`
     })
     
     it('should update textContent of target on event to X when player and turn are both 1', () => {

@@ -20,17 +20,19 @@ function updateScreenWithGame(): void {
     p.remove()
     div.remove()
 
-    if (body !== null) {
+    if (body) {
         body.appendChild(reminder)
         body.appendChild(p)
         body.appendChild(board)
         body.appendChild(resetButton)
-    }
-
-    if (player === -1) {
-        setTimeout(() => {
-            playOpponent()
-        }, 1000)
+        
+        if (player === -1) {
+            setTimeout(() => {
+                playOpponent()
+            }, 1000)
+        }
+    } else {
+        throw new Error('No screen')
     }
 }
 

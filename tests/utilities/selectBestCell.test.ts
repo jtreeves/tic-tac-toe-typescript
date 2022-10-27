@@ -1,9 +1,9 @@
 import selectBestCell from '../../src/utilities/selectBestCell'
 import { mockCreateBoard } from '../mockCreateBoard'
-import { allEmpty, nearlyFull } from '../mockBoardCases'
+import { allEmpty, nearlyFull, allFull } from '../mockBoardCases'
 
 describe('selectBestCell utility', () => {
-    it('should return an HTMLElement', () => {
+    it('should return an HTMLElement under normal circumstances', () => {
         localStorage.setItem('points', allEmpty)
         document.body.innerHTML = mockCreateBoard(allEmpty)
         const result: any = selectBestCell(1)
@@ -22,5 +22,12 @@ describe('selectBestCell utility', () => {
         document.body.innerHTML = mockCreateBoard(nearlyFull)
         const result: HTMLElement | null = selectBestCell(1)
         expect(result?.id).toContain('1')
+    })
+
+    it('should return null if board fully occupied', () => {
+        localStorage.setItem('points', allFull)
+        document.body.innerHTML = mockCreateBoard(allFull)
+        const result: HTMLElement | null = selectBestCell(1)
+        expect(result).toBe(null)
     })
 })
