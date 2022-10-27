@@ -49,4 +49,11 @@ describe('handleTurn handler', () => {
         const updatedArticleContent: string | null = updatedArticle.textContent
         expect(articleContent).toBe(updatedArticleContent)
     })
+    
+    it('should throw an error if event lacks target', () => {
+        const mockEvent: Event = new Event('click')
+        expect(() => {
+            handleTurn(mockEvent)
+        }).toThrow('No target found, or target not of proper type')
+    })
 })
