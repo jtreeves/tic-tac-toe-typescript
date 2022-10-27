@@ -26,4 +26,12 @@ describe('updateScreenWithGame mutator', () => {
         const button: HTMLElement | null = document.querySelector('button')
         expect(button?.textContent).toBe('Reset')
     })
+
+    it('should throw an error if body does not exist', () => {
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        body.remove()
+        expect(() => {
+            updateScreenWithGame()
+        }).toThrow('No screen')
+    })
 })

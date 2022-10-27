@@ -30,4 +30,12 @@ describe('updateScreenWithOptions mutator', () => {
         const message: HTMLElement = document.querySelector('p') as HTMLElement
         expect(message.textContent).toBe('Which option do you want to play?')
     })
+
+    it('should throw an error if body does not exist', () => {
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        body.remove()
+        expect(() => {
+            updateScreenWithOptions()
+        }).toThrow('No screen')
+    })
 })

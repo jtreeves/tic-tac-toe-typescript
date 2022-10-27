@@ -8,19 +8,19 @@ import playOpponent from '../utilities/playOpponent'
 
 function updateScreenWithGame(): void {
     const body: HTMLElement | null = document.querySelector('body')
-    const p: HTMLElement = document.querySelector('p') as HTMLElement
-    const div: HTMLElement = document.querySelector('div') as HTMLElement
+    const p: HTMLElement | null = document.querySelector('p')
+    const div: HTMLElement | null = document.querySelector('div')
     const reminder: HTMLElement = createPlayerReminder()
     const board: HTMLElement = createBoard()
     const resetButton: HTMLElement = createResetButton()
     const player: number = getPlayer()
     const message: string = player === 1 ? yourTurnMessage : waitTurnMessage
-
-    p.textContent = message
-    p.remove()
-    div.remove()
-
-    if (body) {
+    
+    if (body && p && div) {
+        p.textContent = message
+        p.remove()
+        div.remove()
+        
         body.appendChild(reminder)
         body.appendChild(p)
         body.appendChild(board)
