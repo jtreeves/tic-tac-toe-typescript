@@ -1,6 +1,6 @@
 import playOpponent from '../../src/utilities/playOpponent'
-import { mockCreateBoard } from '../mockCreateBoard'
-import { allEmpty, allFull } from '../mockBoardCases'
+import { mockCreateBoard } from '../mocks/mockCreateBoard'
+import { allEmpty, allFull } from '../mocks/mockBoardCases'
 
 describe('playOpponent utility', () => {
     it('should changes the points array from all zeroes to at all zeroes except for one slot', () => {

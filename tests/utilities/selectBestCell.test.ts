@@ -1,6 +1,6 @@
 import selectBestCell from '../../src/utilities/selectBestCell'
-import { mockCreateBoard } from '../mockCreateBoard'
-import { allEmpty, nearlyFull, allFull } from '../mockBoardCases'
+import { mockCreateBoard } from '../mocks/mockCreateBoard'
+import { allEmpty, nearlyFull, allFull } from '../mocks/mockBoardCases'
 
 describe('selectBestCell utility', () => {
     it('should return an HTMLElement under normal circumstances', () => {

@@ -1,7 +1,7 @@
 import handleTurn from '../../src/handlers/handleTurn'
-import { mockElement } from '../mockElement'
-import { mockEvent } from '../mockEvent'
-import { mockTarget } from '../mockTarget'
+import { mockElement } from '../mocks/mockElement'
+import { mockEvent } from '../mocks/mockEvent'
+import { mockTarget } from '../mocks/mockTarget'
 
 describe('handleTurn handler', () => {
     beforeEach(() => {
@@ -86,5 +86,18 @@ describe('handleTurn handler', () => {
         handleTurn(mockedEvent)
         const cell: HTMLElement = document.getElementById(id) as HTMLElement
         expect(cell.textContent).toBe('X')
+    })
+
+    it('should update textContent of target on event to O when player and turn are both -1, using mocked event', () => {
+        localStorage.setItem('player', '-1')
+        localStorage.setItem('turn', '-1')
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        const id: string = 'square-3'
+        const mockedElement: HTMLElement = mockElement('', id)
+        const mockedEvent: Event = mockEvent(mockedElement)
+        body.append(mockedElement)
+        handleTurn(mockedEvent)
+        const cell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(cell.textContent).toBe('O')
     })
 })
