@@ -1,3 +1,5 @@
+import * as setPlayerModule from '../../../src/storers/setPlayer'
+import * as updateScreenWithGameModule from '../../../src/mutators/updateScreenWithGame'
 import handleOptionX from '../../../src/handlers/handleOptionX'
 
 describe('handleOptionX handler', () => {
@@ -7,10 +9,25 @@ describe('handleOptionX handler', () => {
             <div>Some contents</div>
         `
     })
-
-    it('should set player state to 1', () => {
+    
+    it('should call setPlayer once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setPlayerModule, 'default')
         handleOptionX()
-        const player: string | null = localStorage.getItem('player')
-        expect(player).toBe('1')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+    })
+    
+    it('should call updateScreenWithGame once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(updateScreenWithGameModule, 'default')
+        handleOptionX()
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+    })
+    
+    it('should call setPlayer with parameter of 1', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setPlayerModule, 'default')
+        handleOptionX()
+        expect(spy).toBeCalledWith(1)
+        spy.mockRestore()
     })
 })

@@ -1,11 +1,9 @@
+import * as setInitialStatesModule from '../../../src/storers/setInitialStates'
+import * as updateScreenWithOptionsModule from '../../../src/mutators/updateScreenWithOptions'
 import handleReset from '../../../src/handlers/handleReset'
 
 describe('handleReset handler', () => {
     beforeEach(() => {
-        localStorage.setItem('points', '1,0,1,0,-1,0,1,0,-1')
-        localStorage.setItem('turn', '-1')
-        localStorage.setItem('winner', 'false')
-        localStorage.setItem('tie', 'false')
         document.body.innerHTML = `
             <h2>Some reminder</h2>
             <p>Some message</p>
@@ -22,15 +20,17 @@ describe('handleReset handler', () => {
         expect(section).toBe(null)
     })
 
-    it('should set points to array of all zeroes', () => {
+    it('should call setInitialStates once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setInitialStatesModule, 'default')
         handleReset()
-        const points: string | null = localStorage.getItem('points')
-        expect(points).toBe('0,0,0,0,0,0,0,0,0')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 
-    it('should set turn to 1', () => {
+    it('should call updateScreenWithOptions once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(updateScreenWithOptionsModule, 'default')
         handleReset()
-        const turn: string | null = localStorage.getItem('turn')
-        expect(turn).toBe('1')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 })
