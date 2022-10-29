@@ -1,4 +1,4 @@
-import updateMessage from '../../src/mutators/updateMessage'
+import updateMessage from '../../../src/mutators/updateMessage'
 
 describe('updateMessage mutator', () => {
     beforeEach(() => {

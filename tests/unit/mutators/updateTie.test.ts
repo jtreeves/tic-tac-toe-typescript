@@ -1,4 +1,4 @@
-import updateTie from '../../src/mutators/updateTie'
+import updateTie from '../../../src/mutators/updateTie'
 
 describe('updateTie mutator', () => {
     it('should return tie as false if any zeroes remain in the array', () => {

@@ -1,4 +1,4 @@
-import createResetButton from '../../src/generators/createResetButton'
+import createResetButton from '../../../src/generators/createResetButton'
 
 describe('createResetButton generator', () => {
     const result: any = createResetButton()

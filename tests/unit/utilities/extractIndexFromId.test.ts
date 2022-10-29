@@ -1,4 +1,4 @@
-import extractIndexFromId from '../../src/utilities/extractIndexFromId'
+import extractIndexFromId from '../../../src/utilities/extractIndexFromId'
 
 describe('extractIndexFromId utility', () => {
     it('should return numerical version of last character in string passed in for parameter', () => {

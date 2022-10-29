@@ -1,4 +1,4 @@
-import waitTurnMessage from '../../src/data/waitTurnMessage'
+import waitTurnMessage from '../../../src/data/waitTurnMessage'
 
 describe('waitTurnMessage data', () => {
     it('should return a string', () => {

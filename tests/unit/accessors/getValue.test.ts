@@ -1,4 +1,4 @@
-import getValue from '../../src/accessors/getValue'
+import getValue from '../../../src/accessors/getValue'
 
 describe('getValue accessor', () => {
     const testKey: string = 'turn'

@@ -1,4 +1,4 @@
-import findEmptyIndexInNearlyFullCombo from '../../src/utilities/findEmptyIndexInNearlyFullCombo'
+import findEmptyIndexInNearlyFullCombo from '../../../src/utilities/findEmptyIndexInNearlyFullCombo'
 
 describe('findEmptyIndexInNearlyFullCombo utility', () => {
     it('should return index in points array with current value of 0 if it is part of a winning combo with two values already filled matches the multiplier provided by the parameter', () => {

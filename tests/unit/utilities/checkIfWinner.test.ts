@@ -1,4 +1,4 @@
-import checkIfWinner from '../../src/utilities/checkIfWinner'
+import checkIfWinner from '../../../src/utilities/checkIfWinner'
 
 describe('checkIfWinner utility', () => {
     it('should return false if no winning combo filled', () => {

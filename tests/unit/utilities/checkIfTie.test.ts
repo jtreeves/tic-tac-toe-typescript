@@ -1,4 +1,4 @@
-import checkIfTie from '../../src/utilities/checkIfTie'
+import checkIfTie from '../../../src/utilities/checkIfTie'
 
 describe('checkIfTie utility', () => {
     it('should return false if any zeroes exist in the points array', () => {

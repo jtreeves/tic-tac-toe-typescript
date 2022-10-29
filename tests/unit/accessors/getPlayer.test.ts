@@ -1,4 +1,4 @@
-import getPlayer from '../../src/accessors/getPlayer'
+import getPlayer from '../../../src/accessors/getPlayer'
 
 describe('getPlayer accessor', () => {
     const testKey: string = 'player'

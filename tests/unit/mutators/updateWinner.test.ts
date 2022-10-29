@@ -1,4 +1,4 @@
-import updateWinner from '../../src/mutators/updateWinner'
+import updateWinner from '../../../src/mutators/updateWinner'
 
 describe('updateWinner mutator', () => {
     it('should keep winner as false if no winning combo filled', () => {

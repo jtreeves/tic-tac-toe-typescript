@@ -1,4 +1,4 @@
-import setInitialStates from '../../src/storers/setInitialStates'
+import setInitialStates from '../../../src/storers/setInitialStates'
 
 describe('setInitialStates storer', () => {
     let retrievedPoints: string | null

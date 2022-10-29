@@ -1,7 +1,7 @@
-import handleTurn from '../../src/handlers/handleTurn'
-import { mockElement } from '../mocks/mockElement'
-import { mockEvent } from '../mocks/mockEvent'
-import { mockTarget } from '../mocks/mockTarget'
+import handleTurn from '../../../src/handlers/handleTurn'
+import { mockElement } from '../../mocks/mockElement'
+import { mockEvent } from '../../mocks/mockEvent'
+import { mockTarget } from '../../mocks/mockTarget'
 
 describe('handleTurn handler', () => {
     beforeEach(() => {

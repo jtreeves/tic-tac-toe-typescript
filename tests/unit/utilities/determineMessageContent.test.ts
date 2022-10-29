@@ -1,4 +1,4 @@
-import determineMessageContent from '../../src/utilities/determineMessageContent'
+import determineMessageContent from '../../../src/utilities/determineMessageContent'
 
 describe('determineMessageContent utility', () => {
     it('should return string of You win! if winner parameter is true and turnIsPlayer parameter is true', () => {

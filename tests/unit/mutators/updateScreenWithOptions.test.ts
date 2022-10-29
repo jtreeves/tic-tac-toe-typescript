@@ -1,4 +1,4 @@
-import updateScreenWithOptions from '../../src/mutators/updateScreenWithOptions'
+import updateScreenWithOptions from '../../../src/mutators/updateScreenWithOptions'
 
 describe('updateScreenWithOptions mutator', () => {
     beforeEach(() => {
