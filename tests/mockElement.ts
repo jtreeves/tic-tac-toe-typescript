@@ -1,15 +1,25 @@
 function mockElement(
     text: string,
     id: string
-): HTMLElement {
-    const mockedElement: HTMLElement = {
-        ...new HTMLElement(),
-        textContent: text,
-        id: id,
-    }
+): MockElement {
+    const mockedElement: MockElement = new MockElement(text, id)
 
     return mockedElement
 }
+
+class MockElement extends HTMLElement {
+    constructor(
+        text: string,
+        id: string
+    ) {
+        super()
+
+        this.textContent = text
+        this.id = id
+    }
+}
+
+customElements.define('mock-element', MockElement)
 
 export {
     mockElement

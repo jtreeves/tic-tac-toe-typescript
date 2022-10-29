@@ -1,4 +1,7 @@
 import handleTurn from '../../src/handlers/handleTurn'
+import { mockElement } from '../mockElement'
+import { mockEvent } from '../mockEvent'
+import { mockTarget } from '../mockTarget'
 
 describe('handleTurn handler', () => {
     beforeEach(() => {
@@ -51,9 +54,37 @@ describe('handleTurn handler', () => {
     })
     
     it('should throw an error if event lacks target', () => {
-        const mockEvent: Event = new Event('click')
+        const mockedEvent: Event = new Event('click')
         expect(() => {
-            handleTurn(mockEvent)
+            handleTurn(mockedEvent)
         }).toThrow('No target found, or target not of proper type')
+    })
+    
+    it('should throw an error if event target is null', () => {
+        const mockedEvent: Event = mockEvent(null)
+        expect(() => {
+            handleTurn(mockedEvent)
+        }).toThrow('No target found, or target not of proper type')
+    })
+    
+    it('should throw an error if event target is not an HTMLElement', () => {
+        const mockedTarget: EventTarget = mockTarget()
+        const mockedEvent: Event = mockEvent(mockedTarget)
+        expect(() => {
+            handleTurn(mockedEvent)
+        }).toThrow('No target found, or target not of proper type')
+    })
+
+    it('should update textContent of target on event to X when player and turn are both 1, using mocked event', () => {
+        localStorage.setItem('player', '1')
+        localStorage.setItem('turn', '1')
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        const id: string = 'square-3'
+        const mockedElement: HTMLElement = mockElement('', id)
+        const mockedEvent: Event = mockEvent(mockedElement)
+        body.append(mockedElement)
+        handleTurn(mockedEvent)
+        const cell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(cell.textContent).toBe('X')
     })
 })
