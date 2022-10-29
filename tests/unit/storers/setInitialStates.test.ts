@@ -1,39 +1,63 @@
+import * as setPointsModule from '../../../src/storers/setPoints'
+import * as setTurnModule from '../../../src/storers/setTurn'
+import * as setTieModule from '../../../src/storers/setTie'
+import * as setWinnerModule from '../../../src/storers/setWinner'
 import setInitialStates from '../../../src/storers/setInitialStates'
 
 describe('setInitialStates storer', () => {
-    let retrievedPoints: string | null
-    let retrievedTurn: string | null
-    let retrievedTie: string | null
-    let retrievedWinner: string | null
-
-    beforeEach(() => {
+    it('should call setPoints once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setPointsModule, 'default')
         setInitialStates()
-        retrievedPoints = localStorage.getItem('points')
-        retrievedTurn = localStorage.getItem('turn')
-        retrievedTie = localStorage.getItem('tie')
-        retrievedWinner = localStorage.getItem('winner')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+    })
+    
+    it('should call setPoints with paramter of array containing 9 elements, all of which are 0', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setPointsModule, 'default')
+        setInitialStates()
+        expect(spy).toBeCalledWith(Array(9).fill(0))
+        spy.mockRestore()
     })
 
-    it('should add keys of points, turn, tie, and winner to localStorage, whose values can be retrieved by calling getItem with those keys, with all their values returned as strings', () => {
-        expect(typeof retrievedPoints).toBe('string')
-        expect(typeof retrievedTurn).toBe('string')
-        expect(typeof retrievedTie).toBe('string')
-        expect(typeof retrievedWinner).toBe('string')
+    it('should call setTurn once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setTurnModule, 'default')
+        setInitialStates()
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 
-    it('should store points as a string of 9 zeroes separated by commas', () => {
-        expect(retrievedPoints).toBe('0,0,0,0,0,0,0,0,0')
+    it('should call setTurn with parameter of 1', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setTurnModule, 'default')
+        setInitialStates()
+        expect(spy).toBeCalledWith(1)
+        spy.mockRestore()
     })
 
-    it('should store turn as a string of 1', () => {
-        expect(retrievedTurn).toBe('1')
+    it('should call setTie once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setTieModule, 'default')
+        setInitialStates()
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 
-    it('should store tie as a string of false', () => {
-        expect(retrievedTie).toBe('false')
+    it('should call setTie with parameter of false', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setTieModule, 'default')
+        setInitialStates()
+        expect(spy).toBeCalledWith(false)
+        spy.mockRestore()
     })
 
-    it('should store winner as a string of false', () => {
-        expect(retrievedWinner).toBe('false')
+    it('should call setWinner once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setWinnerModule, 'default')
+        setInitialStates()
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+    })
+
+    it('should call setWinner with parameter of false', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setWinnerModule, 'default')
+        setInitialStates()
+        expect(spy).toBeCalledWith(false)
+        spy.mockRestore()
     })
 })

@@ -17,6 +17,13 @@ describe('getPlayer accessor', () => {
         spy.mockRestore()
     })
     
+    it('should call getValue with parameter of string player', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
+        getPlayer()
+        expect(spy).toBeCalledWith('player')
+        spy.mockRestore()
+    })
+    
     it('should return numerical version of string returned by getValue', () => {
         const returnedString: string = '1'
         const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')

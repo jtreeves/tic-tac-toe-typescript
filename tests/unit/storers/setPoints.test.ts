@@ -1,21 +1,20 @@
+import * as setValueModule from '../../../src/storers/setValue'
 import setPoints from '../../../src/storers/setPoints'
 
 describe('setPoints storer', () => {
-    const testValue: number[] = [0, 1, 0, -1, 0, -1, 0, 0, 1]
-
-    let retrievedItem: string | null
-
-    beforeEach(() => {
-        setPoints(testValue)
-        retrievedItem = localStorage.getItem('points')
+    it('should call setValue once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setValueModule, 'default')
+        setPoints([1, 0])
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 
-    it('should add a key of points to localStorage, with a string value when accessed via getItem', () => {
-        expect(typeof retrievedItem).toBe('string')
-    })
-
-    it('should add a key of points to localStorage, with a string value containing 1 less comma then the lenght of the provided array', () => {
-        const commas: number = Number(retrievedItem?.match(/,/g)?.length)
-        expect(commas).toBe(testValue.length - 1)
+    it('should call setValue with parameters of points and string version of main input', () => {
+        const input: number[] = [1, 0]
+        const stringedInput: string = input.join(',')
+        const spy: jest.SpyInstance = jest.spyOn(setValueModule, 'default')
+        setPoints(input)
+        expect(spy).toBeCalledWith('points', stringedInput)
+        spy.mockRestore()
     })
 })

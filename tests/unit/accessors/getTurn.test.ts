@@ -17,6 +17,13 @@ describe('getTurn accessor', () => {
         spy.mockRestore()
     })
     
+    it('should call getValue with parameter of string turn', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
+        getTurn()
+        expect(spy).toBeCalledWith('turn')
+        spy.mockRestore()
+    })
+    
     it('should return numerical version of string returned by getValue', () => {
         const returnedString: string = '1'
         const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')

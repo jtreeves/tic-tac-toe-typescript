@@ -22,6 +22,13 @@ describe('getPoints accessor', () => {
         spy.mockRestore()
     })
 
+    it('should call getValue with parameter of string points', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
+        getPoints()
+        expect(spy).toBeCalledWith('points')
+        spy.mockRestore()
+    })
+
     it('should return an array with a length equal to 1 more than the amount of commas in string returned by getValue', () => {
         const commas: number = Number(returnedString.match(/,/g)?.length)
         const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')

@@ -1,16 +1,19 @@
+import * as setValueModule from '../../../src/storers/setValue'
 import setTie from '../../../src/storers/setTie'
 
 describe('setTie storer', () => {
-    const testValue: boolean = false
-
-    let retrievedItem: string | null
-
-    beforeEach(() => {
-        setTie(testValue)
-        retrievedItem = localStorage.getItem('tie')
+    it('should call setValue once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setValueModule, 'default')
+        setTie(false)
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 
-    it('should add a key of tie to localStorage, with a value equal to a string coercion of the one supplied the function, which can then be retrieved with getItem when passed a key of tie', () => {
-        expect(retrievedItem).toBe(String(testValue))
+    it('should call setValue with parameters of tie and string version of main input', () => {
+        const input: boolean = false
+        const spy: jest.SpyInstance = jest.spyOn(setValueModule, 'default')
+        setTie(input)
+        expect(spy).toBeCalledWith('tie', String(input))
+        spy.mockRestore()
     })
 })

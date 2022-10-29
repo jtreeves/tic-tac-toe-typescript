@@ -1,16 +1,19 @@
+import * as setValueModule from '../../../src/storers/setValue'
 import setPlayer from '../../../src/storers/setPlayer'
 
 describe('setPlayer storer', () => {
-    const testValue: number = 1
-
-    let retrievedItem: string | null
-
-    beforeEach(() => {
-        setPlayer(testValue)
-        retrievedItem = localStorage.getItem('player')
+    it('should call setValue once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setValueModule, 'default')
+        setPlayer(1)
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
-
-    it('should add a key of player to localStorage, with a value equal to a string coercion of the one supplied the function, which can then be retrieved with getItem when passed a key of player', () => {
-        expect(retrievedItem).toBe(String(testValue))
+    
+    it('should call setValue with parameters of player and string version of main input', () => {
+        const input: number = 1
+        const spy: jest.SpyInstance = jest.spyOn(setValueModule, 'default')
+        setPlayer(input)
+        expect(spy).toBeCalledWith('player', String(input))
+        spy.mockRestore()
     })
 })

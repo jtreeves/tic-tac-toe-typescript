@@ -15,4 +15,12 @@ describe('getValue accessor', () => {
         expect(spy).toBeCalledTimes(1)
         spy.mockRestore()
     })
+    
+    it('should call getItem method on localStorage with parameter matching parameter of main function', () => {
+        const key: string = 'some key'
+        const spy: jest.SpyInstance = jest.spyOn(Storage.prototype, 'getItem')
+        getValue(key)
+        expect(spy).toBeCalledWith(key)
+        spy.mockRestore()
+    })
 })

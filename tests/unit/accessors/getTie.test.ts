@@ -17,6 +17,13 @@ describe('getTie accessor', () => {
         spy.mockRestore()
     })
 
+    it('should call getValue with parameter of string tie', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
+        getTie()
+        expect(spy).toBeCalledWith('tie')
+        spy.mockRestore()
+    })
+
     it('should return false if value returned by getValue was a string equal to false', () => {
         const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
         spy.mockReturnValue('false')

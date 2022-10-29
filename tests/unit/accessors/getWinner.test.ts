@@ -17,6 +17,13 @@ describe('getWinner accessor', () => {
         spy.mockRestore()
     })
 
+    it('should call getValue with parameter of string winner', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
+        getWinner()
+        expect(spy).toBeCalledWith('winner')
+        spy.mockRestore()
+    })
+
     it('should return false if value returned by getValue was a string equal to false', () => {
         const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
         spy.mockReturnValue('false')
