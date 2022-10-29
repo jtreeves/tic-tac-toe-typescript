@@ -1,4 +1,4 @@
-import createBoard from '../../src/generators/createBoard'
+import createBoard from '../../../src/generators/createBoard'
 
 describe('createBoard generator', () => {
     localStorage.setItem('points', '0,0,0,0,0,0,0,0,0')

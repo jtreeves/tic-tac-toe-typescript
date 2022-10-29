@@ -1,4 +1,4 @@
-import yourTurnMessage from '../../src/data/yourTurnMessage'
+import yourTurnMessage from '../../../src/data/yourTurnMessage'
 
 describe('yourTurnMessage data', () => {
     it('should return a string', () => {

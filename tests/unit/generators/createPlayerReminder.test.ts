@@ -1,4 +1,4 @@
-import createPlayerReminder from '../../src/generators/createPlayerReminder'
+import createPlayerReminder from '../../../src/generators/createPlayerReminder'
 
 describe('createPlayerReminder generator', () => {
     const result: any = createPlayerReminder()

@@ -1,4 +1,4 @@
-import setPoints from '../../src/storers/setPoints'
+import setPoints from '../../../src/storers/setPoints'
 
 describe('setPoints storer', () => {
     const testValue: number[] = [0, 1, 0, -1, 0, -1, 0, 0, 1]

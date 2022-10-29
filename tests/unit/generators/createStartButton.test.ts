@@ -1,4 +1,4 @@
-import createStartButton from '../../src/generators/createStartButton'
+import createStartButton from '../../../src/generators/createStartButton'
 
 describe('createStartButton generator', () => {
     const result: any = createStartButton()

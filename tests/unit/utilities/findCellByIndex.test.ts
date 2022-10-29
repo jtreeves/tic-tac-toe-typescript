@@ -1,4 +1,4 @@
-import findCellByIndex from '../../src/utilities/findCellByIndex'
+import findCellByIndex from '../../../src/utilities/findCellByIndex'
 
 describe('findCellByIndex utility', () => {
     beforeEach(() => {

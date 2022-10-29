@@ -1,4 +1,4 @@
-import updateScreenWithGame from '../../src/mutators/updateScreenWithGame'
+import updateScreenWithGame from '../../../src/mutators/updateScreenWithGame'
 
 describe('updateScreenWithGame mutator', () => {
     beforeEach(() => {

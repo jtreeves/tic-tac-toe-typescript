@@ -1,4 +1,4 @@
-import setTie from '../../src/storers/setTie'
+import setTie from '../../../src/storers/setTie'
 
 describe('setTie storer', () => {
     const testValue: boolean = false

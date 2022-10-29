@@ -1,4 +1,4 @@
-import setValue from '../../src/storers/setValue'
+import setValue from '../../../src/storers/setValue'
 
 describe('setValue storer', () => {
     const testKey: string = 'turn'

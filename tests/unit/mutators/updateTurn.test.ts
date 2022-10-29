@@ -1,4 +1,4 @@
-import updateTurn from '../../src/mutators/updateTurn'
+import updateTurn from '../../../src/mutators/updateTurn'
 
 describe('updateTurn mutator', () => {
     it('should change turn from 1 to -1 if no winner or tie', () => {

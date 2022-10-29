@@ -1,4 +1,4 @@
-import setPlayer from '../../src/storers/setPlayer'
+import setPlayer from '../../../src/storers/setPlayer'
 
 describe('setPlayer storer', () => {
     const testValue: number = 1

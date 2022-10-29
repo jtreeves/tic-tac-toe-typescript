@@ -1,4 +1,4 @@
-import createInitialScreen from '../../src/generators/createInitialScreen'
+import createInitialScreen from '../../../src/generators/createInitialScreen'
 
 describe('createInitialScreen generator', () => {
     beforeEach(() => {

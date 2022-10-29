@@ -1,4 +1,4 @@
-import handleOptionO from '../../src/handlers/handleOptionO'
+import handleOptionO from '../../../src/handlers/handleOptionO'
 
 describe('handleOptionO handler', () => {
     beforeEach(() => {

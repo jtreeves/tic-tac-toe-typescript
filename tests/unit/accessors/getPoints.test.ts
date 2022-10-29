@@ -1,4 +1,4 @@
-import getPoints from '../../src/accessors/getPoints'
+import getPoints from '../../../src/accessors/getPoints'
 
 describe('getPoints accessor', () => {
     const testKey: string = 'points'

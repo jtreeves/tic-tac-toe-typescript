@@ -1,4 +1,4 @@
-import selectRandomEmptyCell from '../../src/utilities/selectRandomEmptyCell'
+import selectRandomEmptyCell from '../../../src/utilities/selectRandomEmptyCell'
 
 describe('selectRandomEmptyCell utility', () => {
     beforeEach(() => {

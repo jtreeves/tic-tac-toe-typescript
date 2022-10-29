@@ -1,4 +1,4 @@
-import createTitle from '../../src/generators/createTitle'
+import createTitle from '../../../src/generators/createTitle'
 
 describe('createTitle generator', () => {
     const result: any = createTitle()

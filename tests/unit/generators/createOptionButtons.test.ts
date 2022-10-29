@@ -1,4 +1,4 @@
-import createOptionButtons from '../../src/generators/createOptionButtons'
+import createOptionButtons from '../../../src/generators/createOptionButtons'
 
 describe('createOptionButtons generator', () => {
     const result: any = createOptionButtons()

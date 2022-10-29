@@ -1,4 +1,4 @@
-import setTurn from '../../src/storers/setTurn'
+import setTurn from '../../../src/storers/setTurn'
 
 describe('setTurn storer', () => {
     const testValue: number = 1

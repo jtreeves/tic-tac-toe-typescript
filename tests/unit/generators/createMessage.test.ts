@@ -1,4 +1,4 @@
-import createMessage from '../../src/generators/createMessage'
+import createMessage from '../../../src/generators/createMessage'
 
 describe('createMessage generator', () => {
     const result: any = createMessage()

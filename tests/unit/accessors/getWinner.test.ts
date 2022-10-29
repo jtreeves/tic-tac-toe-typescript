@@ -1,4 +1,4 @@
-import getWinner from '../../src/accessors/getWinner'
+import getWinner from '../../../src/accessors/getWinner'
 
 describe('getWinner accessor', () => {
     const testKey: string = 'winner'

@@ -1,4 +1,4 @@
-import createCell from '../../src/generators/createCell'
+import createCell from '../../../src/generators/createCell'
 
 describe('createCell generator', () => {
     const id: string = 'some-id'

@@ -1,4 +1,4 @@
-import getTie from '../../src/accessors/getTie'
+import getTie from '../../../src/accessors/getTie'
 
 describe('getTie accessor', () => {
     const testKey: string = 'tie'

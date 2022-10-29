@@ -1,4 +1,4 @@
-import winningCombos from '../../src/data/winningCombos'
+import winningCombos from '../../../src/data/winningCombos'
 
 describe('winningCombos data', () => {
     it('should return an array of arrays of numbers', () => {

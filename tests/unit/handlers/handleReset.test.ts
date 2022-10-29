@@ -1,4 +1,4 @@
-import handleReset from '../../src/handlers/handleReset'
+import handleReset from '../../../src/handlers/handleReset'
 
 describe('handleReset handler', () => {
     beforeEach(() => {

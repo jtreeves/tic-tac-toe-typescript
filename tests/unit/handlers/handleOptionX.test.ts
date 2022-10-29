@@ -1,4 +1,4 @@
-import handleOptionX from '../../src/handlers/handleOptionX'
+import handleOptionX from '../../../src/handlers/handleOptionX'
 
 describe('handleOptionX handler', () => {
     beforeEach(() => {

@@ -1,4 +1,4 @@
-import updatePoints from '../../src/mutators/updatePoints'
+import updatePoints from '../../../src/mutators/updatePoints'
 
 describe('updatePoints mutator', () => {
     it('should update points stored in localStorage to a string with the number after the comma indicated by the first parameter equal to the second parameter', () => {

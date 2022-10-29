@@ -1,4 +1,4 @@
-import updateCurrentStates from '../../src/mutators/updateCurrentStates'
+import updateCurrentStates from '../../../src/mutators/updateCurrentStates'
 
 describe('updateCurrentStates mutator', () => {
     beforeEach(() => {

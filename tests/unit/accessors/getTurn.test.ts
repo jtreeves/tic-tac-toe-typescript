@@ -1,4 +1,4 @@
-import getTurn from '../../src/accessors/getTurn'
+import getTurn from '../../../src/accessors/getTurn'
 
 describe('getTurn accessor', () => {
     const testKey: string = 'turn'

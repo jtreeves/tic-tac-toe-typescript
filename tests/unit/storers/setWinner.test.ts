@@ -1,4 +1,4 @@
-import setWinner from '../../src/storers/setWinner'
+import setWinner from '../../../src/storers/setWinner'
 
 describe('setWinner storer', () => {
     const testValue: boolean = false
