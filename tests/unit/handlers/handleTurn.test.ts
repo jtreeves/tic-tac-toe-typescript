@@ -1,58 +1,102 @@
-import handleTurn from '../../../src/handlers/handleTurn'
 import { mockElement } from '../../mocks/mockElement'
 import { mockEvent } from '../../mocks/mockEvent'
 import { mockTarget } from '../../mocks/mockTarget'
+import * as getPlayerModule from '../../../src/accessors/getPlayer'
+import * as getTurnModule from '../../../src/accessors/getTurn'
+import * as updateCurrentStatesModule from '../../../src/mutators/updateCurrentStates'
+import handleTurn from '../../../src/handlers/handleTurn'
 
 describe('handleTurn handler', () => {
     beforeEach(() => {
         document.body.innerHTML = `<p>Some message</p><article id='square-5'></article>`
     })
-    
-    it('should update textContent of target on event to X when player and turn are both 1', () => {
-        localStorage.setItem('player', '1')
-        localStorage.setItem('turn', '1')
-        const article: HTMLElement = document.querySelector('article') as HTMLElement
-        article.addEventListener('click', handleTurn)
-        article.click()
-        const updatedArticle: HTMLElement = document.querySelector('article') as HTMLElement
-        expect(updatedArticle.textContent).toBe('X')
+
+    it('should update textContent of target on event to X when getPlayer and getTurn both return 1', () => {
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(1)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(1)
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        const id: string = 'square-3'
+        const mockedElement: HTMLElement = mockElement('', id)
+        const mockedEvent: Event = mockEvent(mockedElement)
+        body.append(mockedElement)
+        handleTurn(mockedEvent)
+        const cell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(cell.textContent).toBe('X')
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
     })
-    
-    it('should update textContent of target on event to O when player and turn are both -1', () => {
-        localStorage.setItem('player', '-1')
-        localStorage.setItem('turn', '-1')
-        const article: HTMLElement = document.querySelector('article') as HTMLElement
-        article.addEventListener('click', handleTurn)
-        article.click()
-        const updatedArticle: HTMLElement = document.querySelector('article') as HTMLElement
-        expect(updatedArticle.textContent).toBe('O')
+
+    it('should update textContent of target on event to O when getPlayer and getTurn both return -1', () => {
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(-1)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(-1)
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        const id: string = 'square-3'
+        const mockedElement: HTMLElement = mockElement('', id)
+        const mockedEvent: Event = mockEvent(mockedElement)
+        body.append(mockedElement)
+        handleTurn(mockedEvent)
+        const cell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(cell.textContent).toBe('O')
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
     })
-    
-    it('should not update textContent of target on event when player and turn are not equal', () => {
-        localStorage.setItem('player', '1')
-        localStorage.setItem('turn', '-1')
-        const article: HTMLElement = document.querySelector('article') as HTMLElement
-        const articleContent: string | null = article.textContent
-        article.addEventListener('click', handleTurn)
-        article.click()
-        const updatedArticle: HTMLElement = document.querySelector('article') as HTMLElement
-        const updatedArticleContent: string | null = updatedArticle.textContent
-        expect(articleContent).toBe(updatedArticleContent)
+
+    it('should call updateCurrentStates once if textContent is empty and getPlayer and getTurn return identical values', () => {
+        const textContent: string = ''
+        const value: number = 1
+        const spy: jest.SpyInstance = jest.spyOn(updateCurrentStatesModule, 'default')
+        spy.mockReturnValue(jest.fn())
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(value)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(value)
+        const mockedElement: HTMLElement = mockElement(textContent, 'square-3')
+        const mockedEvent: Event = mockEvent(mockedElement)
+        handleTurn(mockedEvent)
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
     })
-    
-    it('should not update textContent of target on event when content already exists', () => {
-        localStorage.setItem('player', '1')
-        localStorage.setItem('turn', '1')
-        document.body.innerHTML = `<article id='square-5'>O</article>`
-        const article: HTMLElement = document.querySelector('article') as HTMLElement
-        const articleContent: string | null = article.textContent
-        article.addEventListener('click', handleTurn)
-        article.click()
-        const updatedArticle: HTMLElement = document.querySelector('article') as HTMLElement
-        const updatedArticleContent: string | null = updatedArticle.textContent
-        expect(articleContent).toBe(updatedArticleContent)
+
+    it('should not call updateCurrentStates if textContent is not empty', () => {
+        const textContent: string = 'O'
+        const spy: jest.SpyInstance = jest.spyOn(updateCurrentStatesModule, 'default')
+        spy.mockReturnValue(jest.fn())
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(1)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(1)
+        const mockedElement: HTMLElement = mockElement(textContent, 'square-3')
+        const mockedEvent: Event = mockEvent(mockedElement)
+        handleTurn(mockedEvent)
+        expect(spy).toBeCalledTimes(0)
+        spy.mockRestore()
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
     })
-    
+
+    it('should not call updateCurrentStates if getPlayer and getTurn return different values', () => {
+        const textContent: string = ''
+        const spy: jest.SpyInstance = jest.spyOn(updateCurrentStatesModule, 'default')
+        spy.mockReturnValue(jest.fn())
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(1)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(-1)
+        const mockedElement: HTMLElement = mockElement(textContent, 'square-3')
+        const mockedEvent: Event = mockEvent(mockedElement)
+        handleTurn(mockedEvent)
+        expect(spy).toBeCalledTimes(0)
+        spy.mockRestore()
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
+    })
+
     it('should throw an error if event lacks target', () => {
         const mockedEvent: Event = new Event('click')
         expect(() => {
@@ -73,31 +117,5 @@ describe('handleTurn handler', () => {
         expect(() => {
             handleTurn(mockedEvent)
         }).toThrow('No target found, or target not of proper type')
-    })
-
-    it('should update textContent of target on event to X when player and turn are both 1, using mocked event', () => {
-        localStorage.setItem('player', '1')
-        localStorage.setItem('turn', '1')
-        const body: HTMLElement = document.querySelector('body') as HTMLElement
-        const id: string = 'square-3'
-        const mockedElement: HTMLElement = mockElement('', id)
-        const mockedEvent: Event = mockEvent(mockedElement)
-        body.append(mockedElement)
-        handleTurn(mockedEvent)
-        const cell: HTMLElement = document.getElementById(id) as HTMLElement
-        expect(cell.textContent).toBe('X')
-    })
-
-    it('should update textContent of target on event to O when player and turn are both -1, using mocked event', () => {
-        localStorage.setItem('player', '-1')
-        localStorage.setItem('turn', '-1')
-        const body: HTMLElement = document.querySelector('body') as HTMLElement
-        const id: string = 'square-3'
-        const mockedElement: HTMLElement = mockElement('', id)
-        const mockedEvent: Event = mockEvent(mockedElement)
-        body.append(mockedElement)
-        handleTurn(mockedEvent)
-        const cell: HTMLElement = document.getElementById(id) as HTMLElement
-        expect(cell.textContent).toBe('O')
     })
 })
