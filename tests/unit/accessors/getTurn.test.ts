@@ -1,20 +1,28 @@
+import * as getValueModule from '../../../src/accessors/getValue'
 import getTurn from '../../../src/accessors/getTurn'
 
 describe('getTurn accessor', () => {
-    const testKey: string = 'turn'
-    const testValue: string = '1'
-
-    beforeEach(() => {
-        localStorage.setItem(testKey, testValue)
-    })
-
     it('should return a number', () => {
+        const spy = jest.spyOn(getValueModule, 'default')
+        spy.mockReturnValue('1')
         const result: any = getTurn()
         expect(typeof result).toBe('number')
+        spy.mockRestore()
     })
-
-    it('should return a value matching the one initially set, but as a numerical coercion', () => {
+    
+    it('should call getValue once', () => {
+        const spy = jest.spyOn(getValueModule, 'default')
+        getTurn()
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+    })
+    
+    it('should return numerical version of string returned by getValue', () => {
+        const returnedString: string = '1'
+        const spy = jest.spyOn(getValueModule, 'default')
+        spy.mockReturnValue(returnedString)
         const result: number = getTurn()
-        expect(result).toBe(Number(testValue))
+        expect(result).toBe(Number(returnedString))
+        spy.mockRestore()
     })
 })

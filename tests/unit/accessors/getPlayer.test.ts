@@ -11,7 +11,7 @@ describe('getPlayer accessor', () => {
     })
     
     it('should call getValue once', () => {
-        const spy = jest.spyOn(getValueModule, 'default')
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
         getPlayer()
         expect(spy).toBeCalledTimes(1)
         spy.mockRestore()
