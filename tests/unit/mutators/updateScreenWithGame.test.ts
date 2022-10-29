@@ -1,3 +1,5 @@
+import * as getPlayerModule from '../../../src/accessors/getPlayer'
+import * as playOpponentModule from '../../../src/utilities/playOpponent'
 import updateScreenWithGame from '../../../src/mutators/updateScreenWithGame'
 
 describe('updateScreenWithGame mutator', () => {
@@ -25,6 +27,28 @@ describe('updateScreenWithGame mutator', () => {
         updateScreenWithGame()
         const button: HTMLElement | null = document.querySelector('button')
         expect(button?.textContent).toBe('Reset')
+    })
+
+    it('should execute playOpponent function after 1 second delay if value returned from getPlayer is -1', async () => {
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(-1)
+        const spyOpponent: jest.SpyInstance = jest.spyOn(playOpponentModule, 'default')
+        updateScreenWithGame()
+        await new Promise((r) => setTimeout(r, 1000))
+        expect(spyOpponent).toBeCalledTimes(1)
+        spyPlayer.mockRestore()
+        spyOpponent.mockRestore()
+    })
+
+    it('should not execute playOpponent function after 1 second delay if value returned from getPlayer is 1', async () => {
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(1)
+        const spyOpponent: jest.SpyInstance = jest.spyOn(playOpponentModule, 'default')
+        updateScreenWithGame()
+        await new Promise((r) => setTimeout(r, 1000))
+        expect(spyOpponent).toBeCalledTimes(0)
+        spyPlayer.mockRestore()
+        spyOpponent.mockRestore()
     })
 
     it('should throw an error if body does not exist', () => {

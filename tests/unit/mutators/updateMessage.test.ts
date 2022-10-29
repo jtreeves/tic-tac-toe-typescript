@@ -1,91 +1,57 @@
+import * as getTurnModule from '../../../src/accessors/getTurn'
+import * as getPlayerModule from '../../../src/accessors/getPlayer'
+import * as getTieModule from '../../../src/accessors/getTie'
+import * as getWinnerModule from '../../../src/accessors/getWinner'
+import * as determineMessageContentModule from '../../../src/utilities/determineMessageContent'
 import updateMessage from '../../../src/mutators/updateMessage'
 
 describe('updateMessage mutator', () => {
     beforeEach(() => {
         document.body.innerHTML = `<p>some message</p>`
     })
-    
-    it('should change message to You win! if winner state is true and turn and player states are equal to 1, representing X win', () => {
-        localStorage.setItem('winner', 'true')
-        localStorage.setItem('turn', '1')
-        localStorage.setItem('player', '1')
+
+    it('should call getTurn once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
         updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('You win!')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
-    
-    it('should change message to You win! if winner state is true and turn and player states are equal to -1, representing O win', () => {
-        localStorage.setItem('winner', 'true')
-        localStorage.setItem('turn', '-1')
-        localStorage.setItem('player', '-1')
+
+    it('should call getPlayer once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
         updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('You win!')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
-    
-    it('should change message to You lose! if winner state is true and turn and player states are not equal, with turn at -1 and player at 1, representing X loss', () => {
-        localStorage.setItem('winner', 'true')
-        localStorage.setItem('turn', '-1')
-        localStorage.setItem('player', '1')
+
+    it('should call getTie once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getTieModule, 'default')
         updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('You lose!')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
-    
-    it('should change message to You lose! if winner state is true and turn and player states are not equal, with turn at 1 and player at -1, representing O loss', () => {
-        localStorage.setItem('winner', 'true')
-        localStorage.setItem('turn', '1')
-        localStorage.setItem('player', '-1')
+
+    it('should call getWinner once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getWinnerModule, 'default')
         updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('You lose!')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
-    
-    it('should change message to Tie game! if winner state is false but tie state is true', () => {
-        localStorage.setItem('winner', 'false')
-        localStorage.setItem('tie', 'true')
+
+    it('should call determineMessageContent once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(determineMessageContentModule, 'default')
         updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('Tie game!')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
-    
-    it('should change message to Your turn! if winner and tie states are false and turn and player states are equal to 1, representing turn for X', () => {
-        localStorage.setItem('winner', 'false')
-        localStorage.setItem('tie', 'false')
-        localStorage.setItem('turn', '1')
-        localStorage.setItem('player', '1')
+
+    it('should change textContent of p tag to value returned by determineMessageContent', () => {
+        const text: string = 'updated message'
+        const spy: jest.SpyInstance = jest.spyOn(determineMessageContentModule, 'default')
+        spy.mockReturnValue(text)
         updateMessage()
         const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('Your turn!')
-    })
-    
-    it('should change message to Your turn! if winner and tie states are false and turn and player states are equal to -1, representing turn for O', () => {
-        localStorage.setItem('winner', 'false')
-        localStorage.setItem('tie', 'false')
-        localStorage.setItem('turn', '-1')
-        localStorage.setItem('player', '-1')
-        updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('Your turn!')
-    })
-    
-    it('should change message to Wait your turn... if winner and tie states are false and turn and player states are not equal, with turn at -1 and player at 1,representing that X must wait', () => {
-        localStorage.setItem('winner', 'false')
-        localStorage.setItem('tie', 'false')
-        localStorage.setItem('turn', '-1')
-        localStorage.setItem('player', '1')
-        updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('Wait your turn...')
-    })
-    
-    it('should change message to Wait your turn... if winner and tie states are false and turn and player states are not equal, with turn at 1 and player at -1,representing that O must wait', () => {
-        localStorage.setItem('winner', 'false')
-        localStorage.setItem('tie', 'false')
-        localStorage.setItem('turn', '1')
-        localStorage.setItem('player', '-1')
-        updateMessage()
-        const message: HTMLElement = document.querySelector('p') as HTMLElement
-        expect(message.textContent).toBe('Wait your turn...')
+        expect(message.textContent).toBe(text)
+        spy.mockRestore()
     })
 })

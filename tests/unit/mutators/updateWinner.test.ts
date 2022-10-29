@@ -1,24 +1,27 @@
+import * as getPointsModule from '../../../src/accessors/getPoints'
+import * as setWinnerModule from '../../../src/storers/setWinner'
+import * as checkIfWinnerModule from '../../../src/utilities/checkIfWinner'
 import updateWinner from '../../../src/mutators/updateWinner'
 
 describe('updateWinner mutator', () => {
-    it('should keep winner as false if no winning combo filled', () => {
-        localStorage.setItem('points', '0,0,0,0,1,0,0,0,0')
+    it('should call getPoints once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getPointsModule, 'default')
         updateWinner()
-        const winner: string | null = localStorage.getItem('winner')
-        expect(winner).toBe('false')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
     
-    it('should change winner to true if X gets a winning combo filled', () => {
-        localStorage.setItem('points', '1,1,1,0,0,0,0,0,0')
+    it('should call setWinner once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setWinnerModule, 'default')
         updateWinner()
-        const winner: string | null = localStorage.getItem('winner')
-        expect(winner).toBe('true')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
     
-    it('should change winner to true if O gets a winning combo filled', () => {
-        localStorage.setItem('points', '-1,-1,-1,0,0,0,0,0,0')
+    it('should call checkIfWinner once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(checkIfWinnerModule, 'default')
         updateWinner()
-        const winner: string | null = localStorage.getItem('winner')
-        expect(winner).toBe('true')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 })

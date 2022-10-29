@@ -1,17 +1,27 @@
+import * as getPointsModule from '../../../src/accessors/getPoints'
+import * as setTieModule from '../../../src/storers/setTie'
+import * as checkIfTieModule from '../../../src/utilities/checkIfTie'
 import updateTie from '../../../src/mutators/updateTie'
 
 describe('updateTie mutator', () => {
-    it('should return tie as false if any zeroes remain in the array', () => {
-        localStorage.setItem('points', '1,1,1,1,1,1,1,1,0')
+    it('should call getPoints once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(getPointsModule, 'default')
         updateTie()
-        const tie: string | null = localStorage.getItem('tie')
-        expect(tie).toBe('false')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
     
-    it('should change tie to true if there are no longer any zeroes in the array', () => {
-        localStorage.setItem('points', '1,1,1,1,1,1,1,1,1')
+    it('should call setTie once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(setTieModule, 'default')
         updateTie()
-        const tie: string | null = localStorage.getItem('tie')
-        expect(tie).toBe('true')
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+    })
+    
+    it('should call checkIfTie once', () => {
+        const spy: jest.SpyInstance = jest.spyOn(checkIfTieModule, 'default')
+        updateTie()
+        expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
     })
 })
