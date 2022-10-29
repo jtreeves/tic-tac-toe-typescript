@@ -13,13 +13,13 @@ describe('getWinner accessor', () => {
 
     it('should return false if value initially set was a string equal to false', () => {
         localStorage.setItem(testKey, testFalseValue)
-        const result: any = getWinner()
+        const result: boolean = getWinner()
         expect(result).toBe(false)
     })
 
     it('should return true if value initially set was a string equal to true', () => {
         localStorage.setItem(testKey, testTrueValue)
-        const result: any = getWinner()
+        const result: boolean = getWinner()
         expect(result).toBe(true)
     })
 })

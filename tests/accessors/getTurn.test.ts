@@ -14,7 +14,7 @@ describe('getTurn accessor', () => {
     })
 
     it('should return a value matching the one initially set, but as a numerical coercion', () => {
-        const result: any = getTurn()
+        const result: number = getTurn()
         expect(result).toBe(Number(testValue))
     })
 })

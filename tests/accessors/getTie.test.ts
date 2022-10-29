@@ -13,13 +13,13 @@ describe('getTie accessor', () => {
 
     it('should return false if value initially set was a string equal to false', () => {
         localStorage.setItem(testKey, testFalseValue)
-        const result: any = getTie()
+        const result: boolean = getTie()
         expect(result).toBe(false)
     })
 
     it('should return true if value initially set was a string equal to true', () => {
         localStorage.setItem(testKey, testTrueValue)
-        const result: any = getTie()
+        const result: boolean = getTie()
         expect(result).toBe(true)
     })
 })

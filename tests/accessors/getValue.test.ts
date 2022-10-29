@@ -14,7 +14,7 @@ describe('getValue accessor', () => {
     })
 
     it('should return a value matching the one initially set', () => {
-        const result: any = getValue(testKey)
+        const result: string = getValue(testKey)
         expect(result).toBe(testValue)
     })
 })

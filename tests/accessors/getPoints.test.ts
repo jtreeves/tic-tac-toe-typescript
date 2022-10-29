@@ -18,14 +18,14 @@ describe('getPoints accessor', () => {
 
     it('should return an array with an amount of elements equal to 1 more than the amount of commas in the initial string', () => {
         const commas: number = Number(testValue.match(/,/g)?.length)
-        const result: any = getPoints()
+        const result: number[] = getPoints()
         expect(result.length).toBe(commas + 1)
     })
 
     it('should return values matching numerical coercions of their corresponding string segments', () => {
         const subStrings: string[] = testValue.split(',')
-        const result: any = getPoints()
-        result.forEach((item: any, index: number) => {
+        const result: number[] = getPoints()
+        result.forEach((item: number, index: number) => {
             expect(item).toBe(Number(subStrings[index]))
         })
     })

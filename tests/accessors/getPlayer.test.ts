@@ -14,7 +14,7 @@ describe('getPlayer accessor', () => {
     })
 
     it('should return a value matching the one initially set, but as a numerical coercion', () => {
-        const result: any = getPlayer()
+        const result: number = getPlayer()
         expect(result).toBe(Number(testValue))
     })
 })
