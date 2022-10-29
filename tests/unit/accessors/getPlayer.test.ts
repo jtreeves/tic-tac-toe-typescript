@@ -3,7 +3,7 @@ import getPlayer from '../../../src/accessors/getPlayer'
 
 describe('getPlayer accessor', () => {
     it('should return a number', () => {
-        const spy = jest.spyOn(getValueModule, 'default')
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
         spy.mockReturnValue('1')
         const result: any = getPlayer()
         expect(typeof result).toBe('number')
@@ -19,7 +19,7 @@ describe('getPlayer accessor', () => {
     
     it('should return numerical version of string returned by getValue', () => {
         const returnedString: string = '1'
-        const spy = jest.spyOn(getValueModule, 'default')
+        const spy: jest.SpyInstance = jest.spyOn(getValueModule, 'default')
         spy.mockReturnValue(returnedString)
         const result: number = getPlayer()
         expect(result).toBe(Number(returnedString))
