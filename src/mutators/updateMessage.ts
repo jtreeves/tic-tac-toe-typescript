@@ -1,9 +1,8 @@
-import yourTurnMessage from '../data/yourTurnMessage'
-import waitTurnMessage from '../data/waitTurnMessage'
 import getTurn from '../accessors/getTurn'
 import getPlayer from '../accessors/getPlayer'
 import getWinner from '../accessors/getWinner'
 import getTie from '../accessors/getTie'
+import determineMessageContent from '../utilities/determineMessageContent'
 
 function updateMessage(): void {
     const message: HTMLElement | null = document.querySelector('p')
@@ -14,14 +13,9 @@ function updateMessage(): void {
         const winner: boolean = getWinner()
         const tie: boolean = getTie()
         const turnIsPlayer: boolean = turn === player
+        const text: string = determineMessageContent(winner, tie, turnIsPlayer)
         
-        if (winner) {
-            message.textContent = `You ${turnIsPlayer ? 'win' : 'lose'}!`
-        } else if (tie) {
-            message.textContent = 'Tie game!'
-        } else {
-            message.textContent = turnIsPlayer ? yourTurnMessage : waitTurnMessage
-        }
+        message.textContent = text
     } else {
         throw new Error('No message currently on screen')
     }

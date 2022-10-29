@@ -1,10 +1,10 @@
 import getPoints from '../accessors/getPoints'
 import setTie from '../storers/setTie'
+import checkIfTie from '../utilities/checkIfTie'
 
 function updateTie(): void {
     const points: number[] = getPoints()
-    const anyZeroes: boolean = points.includes(0)
-    const tie: boolean = !anyZeroes
+    const tie: boolean = checkIfTie(points)
 
     setTie(tie)
 }
