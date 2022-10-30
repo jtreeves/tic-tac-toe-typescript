@@ -7,7 +7,7 @@ import app from '../../src/app'
 jest.setTimeout(100000)
 
 describe('play game acceptance', () => {
-    it('should let user click through an entire game playing X until a winner or tie occurs, which should appear on the screen with a custom message, and it should be possible for X to win, O to win, or a time game to occur', async () => {
+    it('should let user click through an entire game playing X until a winner or tie occurs, which should appear on the screen with a custom message, and it should be possible for X to win, O to win, or a tie game to occur', async () => {
         let allXWins: number = 0
         let allOWins: number = 0
         let allTieGames: number = 0
@@ -27,34 +27,27 @@ describe('play game acceptance', () => {
                 winner = getWinner()
                 tie = getTie()
             }
-            let xWins: boolean = false
-            let oWins: boolean = false
-            let tieGame: boolean = false
             const message: HTMLElement | null = document.querySelector('p')
             if (winner) {
                 const turn: number = getTurn()
                 if (turn === 1) {
-                    xWins = true
                     allXWins++
                     expect(message?.textContent).toBe('You win!')
                 } else {
-                    oWins = true
                     allOWins++
                     expect(message?.textContent).toBe('You lose!')
                 }
             } else {
-                tieGame = true
                 allTieGames++
                 expect(message?.textContent).toBe('Tie game!')
             }
-            expect(xWins || oWins || tieGame).toBe(true)
         }
-        expect(allXWins).toBeGreaterThan(0)
-        expect(allOWins).toBeGreaterThan(0)
-        expect(allTieGames).toBeGreaterThan(0)
+        expect(allXWins).toBeGreaterThanOrEqual(1)
+        expect(allOWins).toBeGreaterThanOrEqual(1)
+        expect(allTieGames).toBeGreaterThanOrEqual(1)
     })
     
-    it('should let user click through an entire game playing O until a winner or tie occurs, which should appear on the screen with a custom message, and it should be possible for X to win, O to win, or a time game to occur', async () => {
+    it('should let user click through an entire game playing O until a winner or tie occurs, which should appear on the screen with a custom message, and it should be possible for X to win, O to win, or a tie game to occur', async () => {
         let allXWins: number = 0
         let allOWins: number = 0
         let allTieGames: number = 0
@@ -75,30 +68,23 @@ describe('play game acceptance', () => {
                 winner = getWinner()
                 tie = getTie()
             }
-            let xWins: boolean = false
-            let oWins: boolean = false
-            let tieGame: boolean = false
             const message: HTMLElement | null = document.querySelector('p')
             if (winner) {
                 const turn: number = getTurn()
                 if (turn === -1) {
-                    oWins = true
                     allOWins++
                     expect(message?.textContent).toBe('You win!')
                 } else {
-                    xWins = true
                     allXWins++
                     expect(message?.textContent).toBe('You lose!')
                 }
             } else {
-                tieGame = true
                 allTieGames++
                 expect(message?.textContent).toBe('Tie game!')
             }
-            expect(xWins || oWins || tieGame).toBe(true)
         }
-        expect(allXWins).toBeGreaterThan(0)
-        expect(allOWins).toBeGreaterThan(0)
-        expect(allTieGames).toBeGreaterThan(0)
+        expect(allXWins).toBeGreaterThanOrEqual(1)
+        expect(allOWins).toBeGreaterThanOrEqual(1)
+        expect(allTieGames).toBeGreaterThanOrEqual(1)
     })
 })
