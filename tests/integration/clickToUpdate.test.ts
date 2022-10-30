@@ -1,5 +1,6 @@
 import setInitialStates from '../../src/storers/setInitialStates'
 import setPlayer from '../../src/storers/setPlayer'
+import setTurn from '../../src/storers/setTurn'
 import createInitialScreen from '../../src/generators/createInitialScreen'
 import updateScreenWithOptions from '../../src/mutators/updateScreenWithOptions'
 import updateScreenWithGame from '../../src/mutators/updateScreenWithGame'
@@ -51,5 +52,34 @@ describe('click to update integration', () => {
         expect(resetButton?.textContent).toBe('Reset')
         expect(optionButtons[0].textContent).toBe('Play X')
         expect(optionButtons[1].textContent).toBe('Play O')
+    })
+
+    it('should change first cell content from empty to X if click first cell on game screen and player set to 1', () => {
+        document.body.innerHTML = ``
+        setInitialStates()
+        createInitialScreen()
+        updateScreenWithOptions()
+        updateScreenWithGame()
+        setPlayer(1)
+        const cells: NodeListOf<HTMLElement> = document.querySelectorAll('article')
+        const firstCell: HTMLElement = cells[0]
+        expect(firstCell.textContent).toBe('')
+        firstCell.click()
+        expect(firstCell.textContent).toBe('X')
+    })
+
+    it('should change first cell content from empty to O if click first cell on game screen and player set to -1', () => {
+        document.body.innerHTML = ``
+        setInitialStates()
+        createInitialScreen()
+        updateScreenWithOptions()
+        updateScreenWithGame()
+        setPlayer(-1)
+        setTurn(-1)
+        const cells: NodeListOf<HTMLElement> = document.querySelectorAll('article')
+        const firstCell: HTMLElement = cells[0]
+        expect(firstCell.textContent).toBe('')
+        firstCell.click()
+        expect(firstCell.textContent).toBe('O')
     })
 })
