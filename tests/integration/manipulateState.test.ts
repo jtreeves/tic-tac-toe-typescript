@@ -3,6 +3,7 @@ import getTurn from '../../src/accessors/getTurn'
 import getTie from '../../src/accessors/getTie'
 import getWinner from '../../src/accessors/getWinner'
 import setPlayer from '../../src/storers/setPlayer'
+import setPoints from '../../src/storers/setPoints'
 import setInitialStates from '../../src/storers/setInitialStates'
 import updateCurrentStates from '../../src/mutators/updateCurrentStates'
 
@@ -43,5 +44,41 @@ describe('manipulate state integration', () => {
         expect(updatedTie).toBe(initialTie)
         expect(updatedWinner).toBe(initialWinner)
         expect(updatedMessage.textContent).toBe('Wait your turn...')
+    })
+    
+    it('should change winner to true with message of You win! after executing updateCurrentStates if points change would result in player winning', () => {
+        document.body.innerHTML = `<p>some message</p>`
+        setPlayer(1)
+        setInitialStates()
+        setPoints([1, 1, 0, -1, -1, 0, 0, 0, 0])
+        updateCurrentStates(2, 1)
+        const updatedWinner: boolean = getWinner()
+        const updatedMessage: HTMLElement = document.querySelector('p') as HTMLElement
+        expect(updatedWinner).toBe(true)
+        expect(updatedMessage.textContent).toBe('You win!')
+    })
+    
+    it('should change winner to true with message of You lose! after executing updateCurrentStates if points change would result in player losing', () => {
+        document.body.innerHTML = `<p>some message</p>`
+        setPlayer(-1)
+        setInitialStates()
+        setPoints([1, 1, 0, -1, -1, 0, 0, 0, 0])
+        updateCurrentStates(2, 1)
+        const updatedWinner: boolean = getWinner()
+        const updatedMessage: HTMLElement = document.querySelector('p') as HTMLElement
+        expect(updatedWinner).toBe(true)
+        expect(updatedMessage.textContent).toBe('You lose!')
+    })
+    
+    it('should change tie to true with message of Tie game! after executing updateCurrentStates if points change would result in tie', () => {
+        document.body.innerHTML = `<p>some message</p>`
+        setPlayer(1)
+        setInitialStates()
+        setPoints([1, 0, -1, -1, -1, 1, 1, 1, -1])
+        updateCurrentStates(1, 1)
+        const updatedTie: boolean = getTie()
+        const updatedMessage: HTMLElement = document.querySelector('p') as HTMLElement
+        expect(updatedTie).toBe(true)
+        expect(updatedMessage.textContent).toBe('Tie game!')
     })
 })
