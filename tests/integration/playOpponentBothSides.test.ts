@@ -27,17 +27,20 @@ describe('play opponent both sides integration', () => {
                 winner = getWinner()
                 tie = getTie()
             }
-            if (tie) {
-                tieGames++
-            } else {
+            if (winner) {
                 const turn: number = getTurn()
                 if (turn === 1) {
                     xWins++
                 } else {
                     oWins++
                 }
+            } else {
+                tieGames++
             }
         }
+        console.log('AI X WINS: ', xWins)
+        console.log('AI O WINS: ', oWins)
+        console.log('AI TIES: ', tieGames)
         expect(xWins + oWins + tieGames).toBe(games)
         expect(xWins).not.toBe(0)
         expect(oWins).not.toBe(0)
