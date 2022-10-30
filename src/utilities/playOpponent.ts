@@ -1,14 +1,14 @@
-import getPlayer from '../accessors/getPlayer'
 import getWinner from '../accessors/getWinner'
 import getTie from '../accessors/getTie'
 import updateCurrentStates from '../mutators/updateCurrentStates'
 import selectBestCell from './selectBestCell'
 import extractIndexFromId from './extractIndexFromId'
 
-function playOpponent(): void {
+function playOpponent(
+    player: number
+): void {
     const winner: boolean = getWinner()
     const tie: boolean = getTie()
-    const player: number = getPlayer()
     const opponent: number = player * -1
 
     if (!winner && !tie) {

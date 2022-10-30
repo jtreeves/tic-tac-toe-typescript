@@ -29,7 +29,7 @@ function updateScreenWithGame(): void {
         
         if (player === -1) {
             setTimeout(() => {
-                playOpponent()
+                playOpponent(player)
             }, 1000)
         }
     } else {

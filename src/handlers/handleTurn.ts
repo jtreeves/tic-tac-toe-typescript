@@ -22,7 +22,7 @@ function handleTurn(
             htmlTarget.textContent = text
             updateCurrentStates(index, turn)
             setTimeout(() => {
-                playOpponent()
+                playOpponent(player)
             }, 1000)
         } else {
             return
