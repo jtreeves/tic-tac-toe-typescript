@@ -3,7 +3,6 @@ import checkIfWinner from '../../../src/utilities/checkIfWinner'
 describe('checkIfWinner utility', () => {
     it('should return false if no winning combo filled', () => {
         const points: number[] = [0, 0, 0, 0, 1, 0, 0, 0, 0]
-        localStorage.setItem('points', '0,0,0,0,1,0,0,0,0')
         const winner: boolean = checkIfWinner(points)
         expect(winner).toBe(false)
     })

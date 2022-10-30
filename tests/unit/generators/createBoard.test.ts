@@ -27,7 +27,7 @@ describe('createBoard generator', () => {
         const result: HTMLElement = createBoard()
         const children: NodeListOf<ChildNode> = result.childNodes
         const ids: string[] = []
-        children.forEach((child: ChildNode, index: number) => {
+        children.forEach((child: ChildNode) => {
             const coercedChild: HTMLElement = child as HTMLElement
             const id: string = coercedChild.id
             ids.push(id)
