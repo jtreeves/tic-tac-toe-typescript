@@ -61,6 +61,7 @@ describe('click to update integration', () => {
         updateScreenWithOptions()
         updateScreenWithGame()
         setPlayer(1)
+        setTurn(1)
         const cells: NodeListOf<HTMLElement> = document.querySelectorAll('article')
         const firstCell: HTMLElement = cells[0]
         expect(firstCell.textContent).toBe('')
