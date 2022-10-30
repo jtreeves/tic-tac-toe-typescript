@@ -3,7 +3,7 @@
     "description": "This is a TypeScript version of a Tic-Tac-Toe game.",
     "version": "1.0.0",
     "scripts": {
-        "test": "jest",
+        "test": "jest --coverage",
         "serve": "parcel serve public/index.html",
         "build": "parcel build public/index.html"
     },

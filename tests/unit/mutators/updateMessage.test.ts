@@ -54,4 +54,12 @@ describe('updateMessage mutator', () => {
         expect(message.textContent).toBe(text)
         spy.mockRestore()
     })
+
+    it('should throw an error if p tag not found on screen', () => {
+        const p: HTMLElement | null = document.querySelector('p')
+        p?.remove()
+        expect(() => {
+            updateMessage()
+        }).toThrow('No message currently on screen')
+    })
 })
