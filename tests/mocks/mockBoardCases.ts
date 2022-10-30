@@ -1,7 +1,7 @@
-const allEmpty: string = '0,0,0,0,0,0,0,0,0'
-const nearlyFull: string = '1,0,1,0,-1,0,0,0,0'
-const allFull: string = '1,-1,1,-1,-1,1,1,-1,1'
-const tieGame: string = '1,1,-1,-1,-1,1,1,1,-1'
+const allEmpty: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+const nearlyFull: number[] = [1, 0, 1, 0, -1, 0, 0, 0, 0]
+const allFull: number[] = [1, -1, 1, -1, -1, 1, 1, -1, 1]
+const tieGame: number[] = [1, 1, -1, -1, -1, 1, 1, 1, -1]
 
 export {
     allEmpty,
