@@ -1,5 +1,5 @@
 import { mockCreateBoard } from '../mocks/mockCreateBoard'
-import { allEmpty, nearlyFull, allFull } from '../mocks/mockBoardCases'
+import { allEmpty, nearlyFull, allFull, oneMissing } from '../mocks/mockBoardCases'
 import setPoints from '../../src/storers/setPoints'
 import selectBestCell from '../../src/utilities/selectBestCell'
 
@@ -24,6 +24,21 @@ describe('select best cell on board integration', () => {
         setPoints(nearlyFull)
         const result: HTMLElement | null = selectBestCell(1)
         expect(result?.id).toContain('1')
+    })
+
+    it('should return element with an id matching the only empty cell on the screen if only one cell remains empty', () => {
+        document.body.innerHTML = mockCreateBoard(oneMissing)
+        setPoints(oneMissing)
+        const allCells: NodeListOf<HTMLElement> = document.querySelectorAll('article')
+        const emptyCells: HTMLElement[] = []
+        allCells.forEach((cell: HTMLElement) => {
+            if (cell.textContent === '') {
+                emptyCells.push(cell)
+            }
+        })
+        const result: HTMLElement | null = selectBestCell(1)
+        expect(emptyCells.length).toBe(1)
+        expect(result?.id).toBe(emptyCells[0].id)
     })
 
     it('should return null if board fully occupied', () => {
