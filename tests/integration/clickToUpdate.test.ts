@@ -1,3 +1,4 @@
+import getPlayer from '../../src/accessors/getPlayer'
 import setInitialStates from '../../src/storers/setInitialStates'
 import setPlayer from '../../src/storers/setPlayer'
 import setTurn from '../../src/storers/setTurn'
@@ -17,7 +18,7 @@ describe('click to update integration', () => {
         expect(optionButtons[1].textContent).toBe('Play O')
     })
     
-    it('should replace option buttons with reset button if click Play X button on options screen', () => {
+    it('should replace option buttons with reset button and set player state to 1 if click Play X button on options screen', () => {
         document.body.innerHTML = ``
         createInitialScreen()
         updateScreenWithOptions()
@@ -25,11 +26,13 @@ describe('click to update integration', () => {
         const firstButton: HTMLElement = optionsButtons[0]
         firstButton.click()
         const resetButton: HTMLElement | null = document.querySelector('button')
+        const player: number = getPlayer()
+        expect(player).toBe(1)
         expect(firstButton.textContent).toBe('Play X')
         expect(resetButton?.textContent).toBe('Reset')
     })
     
-    it('should replace option buttons with reset button if click Play O button on options screen', () => {
+    it('should replace option buttons with reset button and set player state to -1 if click Play O button on options screen', () => {
         document.body.innerHTML = ``
         createInitialScreen()
         updateScreenWithOptions()
@@ -37,6 +40,8 @@ describe('click to update integration', () => {
         const secondButton: HTMLElement = optionsButtons[1]
         secondButton.click()
         const resetButton: HTMLElement | null = document.querySelector('button')
+        const player: number = getPlayer()
+        expect(player).toBe(-1)
         expect(secondButton.textContent).toBe('Play O')
         expect(resetButton?.textContent).toBe('Reset')
     })
