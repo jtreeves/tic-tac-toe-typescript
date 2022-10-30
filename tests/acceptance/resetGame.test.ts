@@ -7,9 +7,12 @@ import app from '../../src/app'
 jest.setTimeout(10000)
 
 describe('reset game acceptance', () => {
-    it('should let user reset game at the beginning of the game, while the board is still empty, which will take them back to the options screen', () => {
+    beforeEach(() => {
         document.body.innerHTML = ``
         app()
+    })
+
+    it('should let user reset game at the beginning of the game, while the board is still empty, which will take them back to the options screen', () => {
         const startButton: HTMLElement | null = document.querySelector('button')
         startButton?.click()
         const optionButtons: NodeListOf<HTMLElement> = document.querySelectorAll('button')
@@ -26,8 +29,6 @@ describe('reset game acceptance', () => {
     })
     
     it('should let user reset game after 1 move, which will take them back to the options screen and reset states', async () => {
-        document.body.innerHTML = ``
-        app()
         const startButton: HTMLElement | null = document.querySelector('button')
         startButton?.click()
         const optionButtons: NodeListOf<HTMLElement> = document.querySelectorAll('button')
@@ -46,8 +47,6 @@ describe('reset game acceptance', () => {
     })
     
     it('should let user reset game after 2 moves, which will take them back to the options screen and reset states', async () => {
-        document.body.innerHTML = ``
-        app()
         const startButton: HTMLElement | null = document.querySelector('button')
         startButton?.click()
         const optionButtons: NodeListOf<HTMLElement> = document.querySelectorAll('button')
@@ -69,8 +68,6 @@ describe('reset game acceptance', () => {
     })
     
     it('should let user reset game after game has ended, either with a winner or a tie, which will take them back to the options screen and reset states', async () => {
-        document.body.innerHTML = ``
-        app()
         const startButton: HTMLElement | null = document.querySelector('button')
         startButton?.click()
         const optionButtons: NodeListOf<HTMLElement> = document.querySelectorAll('button')

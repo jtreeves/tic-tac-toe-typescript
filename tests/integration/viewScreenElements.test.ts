@@ -5,8 +5,11 @@ import updateScreenWithOptions from '../../src/mutators/updateScreenWithOptions'
 import updateScreenWithGame from '../../src/mutators/updateScreenWithGame'
 
 describe('view screen elements integration', () => {
-    it('should display title, message, and start button with appropriate texts after executing createInitialScreen', () => {
+    beforeEach(() => {
         document.body.innerHTML = ``
+    })
+
+    it('should display title, message, and start button with appropriate texts after executing createInitialScreen', () => {
         createInitialScreen()
         const title: HTMLElement | null = document.querySelector('h1')
         const message: HTMLElement | null = document.querySelector('p')
@@ -20,7 +23,6 @@ describe('view screen elements integration', () => {
     })
     
     it('should change message to concern options and add options buttons after executing updateScreenWithOptions', () => {
-        document.body.innerHTML = ``
         createInitialScreen()
         updateScreenWithOptions()
         const message: HTMLElement | null = document.querySelector('p')
@@ -31,7 +33,6 @@ describe('view screen elements integration', () => {
     })
     
     it('should add board with 9 empty children with ids from square-0 to square-8 after executing updateScreenWithGame', () => {
-        document.body.innerHTML = ``
         createInitialScreen()
         updateScreenWithOptions()
         setInitialStates()
@@ -60,7 +61,6 @@ describe('view screen elements integration', () => {
     })
     
     it('should add reminder and update the message after executing updateScreenWithGame, with X and Your turn! if player set to 1', () => {
-        document.body.innerHTML = ``
         createInitialScreen()
         updateScreenWithOptions()
         setInitialStates()
@@ -74,7 +74,6 @@ describe('view screen elements integration', () => {
     })
     
     it('should add reminder and update the message after executing updateScreenWithGame, with O and Wait your turn... if player set to -1', () => {
-        document.body.innerHTML = ``
         createInitialScreen()
         updateScreenWithOptions()
         setInitialStates()
@@ -88,7 +87,6 @@ describe('view screen elements integration', () => {
     })
     
     it('should add reset button to screen after executing updateScreenWithGame', () => {
-        document.body.innerHTML = ``
         createInitialScreen()
         updateScreenWithOptions()
         setInitialStates()

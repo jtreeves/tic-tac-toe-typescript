@@ -4,7 +4,6 @@ import updateScreenWithGame from '../../../src/mutators/updateScreenWithGame'
 
 describe('updateScreenWithGame mutator', () => {
     beforeEach(() => {
-        localStorage.setItem('player', '1')
         document.body.innerHTML = `
             <p>Some message</p>
             <div>Some contents</div>

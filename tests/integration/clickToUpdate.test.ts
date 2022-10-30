@@ -11,9 +11,12 @@ import updateScreenWithOptions from '../../src/mutators/updateScreenWithOptions'
 import updateScreenWithGame from '../../src/mutators/updateScreenWithGame'
 
 describe('click to update integration', () => {
-    it('should replace start button with option buttons if click start button on initial screen', () => {
+    beforeEach(() => {
         document.body.innerHTML = ``
         createInitialScreen()
+    })
+
+    it('should replace start button with option buttons if click start button on initial screen', () => {
         const startButton: HTMLElement | null = document.querySelector('button')
         startButton?.click()
         const optionButtons: NodeListOf<HTMLElement> = document.querySelectorAll('button')
@@ -23,8 +26,6 @@ describe('click to update integration', () => {
     })
     
     it('should replace option buttons with reset button and set player state to 1 if click Play X button on options screen', () => {
-        document.body.innerHTML = ``
-        createInitialScreen()
         updateScreenWithOptions()
         const optionsButtons: NodeListOf<HTMLElement> = document.querySelectorAll('button')
         const firstButton: HTMLElement = optionsButtons[0]
@@ -37,8 +38,6 @@ describe('click to update integration', () => {
     })
     
     it('should replace option buttons with reset button and set player state to -1 if click Play O button on options screen', () => {
-        document.body.innerHTML = ``
-        createInitialScreen()
         updateScreenWithOptions()
         const optionsButtons: NodeListOf<HTMLElement> = document.querySelectorAll('button')
         const secondButton: HTMLElement = optionsButtons[1]
@@ -51,8 +50,6 @@ describe('click to update integration', () => {
     })
 
     it('should replace reset button with option buttons if click reset button on game screen', () => {
-        document.body.innerHTML = ``
-        createInitialScreen()
         updateScreenWithOptions()
         updateScreenWithGame()
         const resetButton: HTMLElement | null = document.querySelector('button')
@@ -64,8 +61,6 @@ describe('click to update integration', () => {
     })
 
     it('should reset points to array of zeroes and winner to false if click reset button on game screen', () => {
-        document.body.innerHTML = ``
-        createInitialScreen()
         updateScreenWithOptions()
         updateScreenWithGame()
         setPoints([1, 1, 1, 0, 0, 0, 0, 0, 0])
@@ -79,9 +74,7 @@ describe('click to update integration', () => {
     })
 
     it('should change first cell content from empty to X if click first cell on game screen and player set to 1', () => {
-        document.body.innerHTML = ``
         setInitialStates()
-        createInitialScreen()
         updateScreenWithOptions()
         updateScreenWithGame()
         setPlayer(1)
@@ -94,9 +87,7 @@ describe('click to update integration', () => {
     })
 
     it('should change first cell content from empty to O if click first cell on game screen and player set to -1', () => {
-        document.body.innerHTML = ``
         setInitialStates()
-        createInitialScreen()
         updateScreenWithOptions()
         updateScreenWithGame()
         setPlayer(-1)
@@ -109,9 +100,7 @@ describe('click to update integration', () => {
     })
 
     it('should not change first cell content from empty if click first cell on game screen but player and turn are not equal', () => {
-        document.body.innerHTML = ``
         setInitialStates()
-        createInitialScreen()
         updateScreenWithOptions()
         updateScreenWithGame()
         setPlayer(-1)
@@ -123,9 +112,7 @@ describe('click to update integration', () => {
     })
 
     it('should not change first cell content when click first cell on game screen if the cell already has content', () => {
-        document.body.innerHTML = ``
         setInitialStates()
-        createInitialScreen()
         updateScreenWithOptions()
         updateScreenWithGame()
         setPlayer(1)
