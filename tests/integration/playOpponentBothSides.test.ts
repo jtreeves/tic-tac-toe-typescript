@@ -38,13 +38,19 @@ describe('play opponent both sides integration', () => {
                 tieGames++
             }
         }
+        const xWinsPercent: number = xWins / games
+        const oWinsPercent: number = oWins / games
+        const tiesPercent: number = tieGames / games
         expect(xWins + oWins + tieGames).toBe(games)
         expect(xWins).not.toBe(0)
         expect(oWins).not.toBe(0)
         expect(tieGames).not.toBe(0)
-        expect(xWins / games).toBeGreaterThan(0.2)
-        expect(oWins / games).toBeGreaterThan(0.1)
-        expect(tieGames / games).toBeGreaterThan(0.4)
+        expect(xWinsPercent).toBeGreaterThan(0.2)
+        expect(oWinsPercent).toBeGreaterThan(0.1)
+        expect(tiesPercent).toBeGreaterThan(0.4)
+        expect(xWinsPercent).toBeLessThan(0.4)
+        expect(oWinsPercent).toBeLessThan(0.3)
+        expect(tiesPercent).toBeLessThan(0.6)
         expect(tieGames).toBeGreaterThan(xWins)
         expect(xWins).toBeGreaterThan(oWins)
     })
