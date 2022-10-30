@@ -49,9 +49,6 @@ describe('play game acceptance', () => {
             }
             expect(xWins || oWins || tieGame).toBe(true)
         }
-        console.log('X PLAYING - ALL X WINS: ', allXWins)
-        console.log('X PLAYING - ALL O WINS: ', allOWins)
-        console.log('X PLAYING - ALL TIES: ', allTieGames)
         expect(allXWins).toBeGreaterThan(0)
         expect(allOWins).toBeGreaterThan(0)
         expect(allTieGames).toBeGreaterThan(0)
@@ -100,9 +97,6 @@ describe('play game acceptance', () => {
             }
             expect(xWins || oWins || tieGame).toBe(true)
         }
-        console.log('O PLAYING - ALL X WINS: ', allXWins)
-        console.log('O PLAYING - ALL O WINS: ', allOWins)
-        console.log('O PLAYING - ALL TIES: ', allTieGames)
         expect(allXWins).toBeGreaterThan(0)
         expect(allOWins).toBeGreaterThan(0)
         expect(allTieGames).toBeGreaterThan(0)
