@@ -82,4 +82,18 @@ describe('click to update integration', () => {
         firstCell.click()
         expect(firstCell.textContent).toBe('O')
     })
+
+    it('should not change first cell content from empty if click first cell on game screen but player and turn are not equal', () => {
+        document.body.innerHTML = ``
+        setInitialStates()
+        createInitialScreen()
+        updateScreenWithOptions()
+        updateScreenWithGame()
+        setPlayer(-1)
+        const cells: NodeListOf<HTMLElement> = document.querySelectorAll('article')
+        const firstCell: HTMLElement = cells[0]
+        expect(firstCell.textContent).toBe('')
+        firstCell.click()
+        expect(firstCell.textContent).toBe('')
+    })
 })
