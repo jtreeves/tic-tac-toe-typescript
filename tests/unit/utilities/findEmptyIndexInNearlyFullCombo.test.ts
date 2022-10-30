@@ -1,7 +1,19 @@
 import findEmptyIndexInNearlyFullCombo from '../../../src/utilities/findEmptyIndexInNearlyFullCombo'
 
 describe('findEmptyIndexInNearlyFullCombo utility', () => {
-    it('should return index in points array with current value of 0 if it is part of a winning combo with two values already filled and matches the multiplier provided by the parameter', () => {
+    it('should return 0 if points at indices 1 and 2 are both 1 and multiplier is 1', () => {
+        const points: number[] = [0, 1, 1, 0, 0, 0, 0, 0, 0]
+        const result: number = findEmptyIndexInNearlyFullCombo(points, 1)
+        expect(result).toBe(0)
+    })
+    
+    it('should return 1 if points at indices 0 and 2 are both 1 and multiplier is 1', () => {
+        const points: number[] = [1, 0, 1, 0, 0, 0, 0, 0, 0]
+        const result: number = findEmptyIndexInNearlyFullCombo(points, 1)
+        expect(result).toBe(1)
+    })
+    
+    it('should return 2 if points at indices 0 and 1 are both 1 and multiplier is 1', () => {
         const points: number[] = [1, 1, 0, 0, 0, 0, 0, 0, 0]
         const result: number = findEmptyIndexInNearlyFullCombo(points, 1)
         expect(result).toBe(2)

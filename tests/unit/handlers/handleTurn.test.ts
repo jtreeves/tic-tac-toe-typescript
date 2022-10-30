@@ -4,6 +4,7 @@ import { mockTarget } from '../../mocks/mockTarget'
 import * as getPlayerModule from '../../../src/accessors/getPlayer'
 import * as getTurnModule from '../../../src/accessors/getTurn'
 import * as updateCurrentStatesModule from '../../../src/mutators/updateCurrentStates'
+import * as playOpponentModule from '../../../src/utilities/playOpponent'
 import handleTurn from '../../../src/handlers/handleTurn'
 
 describe('handleTurn handler', () => {
@@ -58,6 +59,25 @@ describe('handleTurn handler', () => {
         const mockedEvent: Event = mockEvent(mockedElement)
         handleTurn(mockedEvent)
         expect(spy).toBeCalledTimes(1)
+        spy.mockRestore()
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
+    })
+
+    it('should call playOpponent if textContent is empty and getPlayer and getTurn return identical values', async () => {
+        const textContent: string = ''
+        const value: number = 1
+        const spy: jest.SpyInstance = jest.spyOn(playOpponentModule, 'default')
+        spy.mockReturnValue(jest.fn())
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(value)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(value)
+        const mockedElement: HTMLElement = mockElement(textContent, 'square-3')
+        const mockedEvent: Event = mockEvent(mockedElement)
+        handleTurn(mockedEvent)
+        await new Promise((r) => setTimeout(r, 1000))
+        expect(spy).toBeCalled()
         spy.mockRestore()
         spyPlayer.mockRestore()
         spyTurn.mockRestore()
