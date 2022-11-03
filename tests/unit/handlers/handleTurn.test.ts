@@ -3,6 +3,7 @@ import { mockEvent } from '../../mocks/mockEvent'
 import { mockTarget } from '../../mocks/mockTarget'
 import * as getPlayerModule from '../../../src/accessors/getPlayer'
 import * as getTurnModule from '../../../src/accessors/getTurn'
+import * as getWinnerModule from '../../../src/accessors/getWinner'
 import * as updateCurrentStatesModule from '../../../src/mutators/updateCurrentStates'
 import * as playOpponentModule from '../../../src/utilities/playOpponent'
 import handleTurn from '../../../src/handlers/handleTurn'
@@ -44,6 +45,71 @@ describe('handleTurn handler', () => {
         expect(cell.textContent).toBe('O')
         spyPlayer.mockRestore()
         spyTurn.mockRestore()
+    })
+
+    it('should not update textContent of target on event when getPlayer and getTurn do not return the same result', () => {
+        const spy: jest.SpyInstance = jest.spyOn(updateCurrentStatesModule, 'default')
+        spy.mockReturnValue(jest.fn())
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(1)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(-1)
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        const id: string = 'square-3'
+        const mockedElement: HTMLElement = mockElement('', id)
+        const mockedEvent: Event = mockEvent(mockedElement)
+        body.append(mockedElement)
+        handleTurn(mockedEvent)
+        const cell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(cell.textContent).toBe('')
+        spy.mockRestore()
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
+    })
+
+    it('should not update textContent of target on event when target already has content', () => {
+        const spy: jest.SpyInstance = jest.spyOn(updateCurrentStatesModule, 'default')
+        spy.mockReturnValue(jest.fn())
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(1)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(1)
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        const id: string = 'square-3'
+        const mockedElement: HTMLElement = mockElement('O', id)
+        const mockedEvent: Event = mockEvent(mockedElement)
+        body.append(mockedElement)
+        const initialCell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(initialCell.textContent).toBe('O')
+        handleTurn(mockedEvent)
+        const updatedCell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(updatedCell.textContent).toBe('O')
+        spy.mockRestore()
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
+    })
+
+    it('should not update textContent of target on event when getWinner returns true', () => {
+        const spy: jest.SpyInstance = jest.spyOn(updateCurrentStatesModule, 'default')
+        spy.mockReturnValue(jest.fn())
+        const spyPlayer: jest.SpyInstance = jest.spyOn(getPlayerModule, 'default')
+        spyPlayer.mockReturnValue(1)
+        const spyTurn: jest.SpyInstance = jest.spyOn(getTurnModule, 'default')
+        spyTurn.mockReturnValue(1)
+        const spyWinner: jest.SpyInstance = jest.spyOn(getWinnerModule, 'default')
+        spyWinner.mockReturnValue(true)
+        const body: HTMLElement = document.querySelector('body') as HTMLElement
+        const id: string = 'square-3'
+        const mockedElement: HTMLElement = mockElement('', id)
+        const mockedEvent: Event = mockEvent(mockedElement)
+        body.append(mockedElement)
+        handleTurn(mockedEvent)
+        const cell: HTMLElement = document.getElementById(id) as HTMLElement
+        expect(cell.textContent).toBe('')
+        spy.mockRestore()
+        spyPlayer.mockRestore()
+        spyTurn.mockRestore()
+        spyWinner.mockRestore()
     })
 
     it('should call updateCurrentStates once if textContent is empty and getPlayer and getTurn return identical values', () => {
