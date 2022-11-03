@@ -2,6 +2,7 @@ import getTurn from '../../src/accessors/getTurn'
 import getTie from '../../src/accessors/getTie'
 import getWinner from '../../src/accessors/getWinner'
 import selectBestCell from '../../src/utilities/selectBestCell'
+import selectRandomEmptyCell from '../../src/utilities/selectRandomEmptyCell'
 import app from '../../src/app'
 
 jest.setTimeout(100000)
@@ -36,6 +37,13 @@ describe('play game acceptance', () => {
                 } else {
                     allOWins++
                     expect(message?.textContent).toBe('You lose!')
+                }
+                const randomRemainingCell: HTMLElement | null = selectRandomEmptyCell()
+                if (randomRemainingCell) {
+                    const id: string = randomRemainingCell.id
+                    randomRemainingCell.click()
+                    const updatedCell: HTMLElement = document.getElementById(id) as HTMLElement
+                    expect(updatedCell.textContent).toBe('')
                 }
             } else {
                 allTieGames++
@@ -77,6 +85,13 @@ describe('play game acceptance', () => {
                 } else {
                     allXWins++
                     expect(message?.textContent).toBe('You lose!')
+                }
+                const randomRemainingCell: HTMLElement | null = selectRandomEmptyCell()
+                if (randomRemainingCell) {
+                    const id: string = randomRemainingCell.id
+                    randomRemainingCell.click()
+                    const updatedCell: HTMLElement = document.getElementById(id) as HTMLElement
+                    expect(updatedCell.textContent).toBe('')
                 }
             } else {
                 allTieGames++

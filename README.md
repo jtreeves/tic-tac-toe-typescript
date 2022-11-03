@@ -125,10 +125,10 @@ function selectRandomEmptyCell(): HTMLElement {
 
 This repository uses **Jest** for testing. It should be one of the dev dependencies initially installed.
 
-- The app features 214 total passing tests
+- The app features 218 total passing tests
 - Unit tests have 100% code coverage
 - Integration tests have 89% code coverage
-- Acceptance tests have 88% code coverage
+- Acceptance tests have 90% code coverage
 - To check them, run `npm run test`
 
 ## Future Goals
