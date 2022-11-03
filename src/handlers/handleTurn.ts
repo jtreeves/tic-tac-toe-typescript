@@ -1,5 +1,6 @@
 import getTurn from '../accessors/getTurn'
 import getPlayer from '../accessors/getPlayer'
+import getWinner from '../accessors/getWinner'
 import updateCurrentStates from '../mutators/updateCurrentStates'
 import extractIndexFromId from '../utilities/extractIndexFromId'
 import playOpponent from '../utilities/playOpponent'
@@ -13,8 +14,9 @@ function handleTurn(
         const htmlTarget: HTMLElement = target as HTMLElement
         const player: number = getPlayer()
         const turn: number = getTurn()
+        const winner: boolean = getWinner()
 
-        if (htmlTarget.textContent === '' && player === turn) {
+        if (htmlTarget.textContent === '' && player === turn && !winner) {
             const id: string = htmlTarget.id
             const index: number = extractIndexFromId(id)
             const text: string = turn === 1 ? 'X' : 'O'

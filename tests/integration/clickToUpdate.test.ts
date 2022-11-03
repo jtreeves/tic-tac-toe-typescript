@@ -123,4 +123,16 @@ describe('click to update integration', () => {
         firstCell.click()
         expect(firstCell.textContent).toBe('O')
     })
+
+    it('should not change first cell content when click first cell on game screen if winner is true', () => {
+        setInitialStates()
+        updateScreenWithOptions()
+        updateScreenWithGame()
+        setPlayer(1)
+        setWinner(true)
+        const cells: NodeListOf<HTMLElement> = document.querySelectorAll('article')
+        const firstCell: HTMLElement = cells[0]
+        firstCell.click()
+        expect(firstCell.textContent).toBe('')
+    })
 })
